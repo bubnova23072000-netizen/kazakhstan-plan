@@ -1,0 +1,1829 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Открытие IT-компании в Казахстане — План</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: #f8fafc; color: #1e293b; line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .header {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8e 100%);
+    color: #fff; padding: 48px 32px 32px; text-align: center;
+  }
+  .header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+  .header p { font-size: 1rem; opacity: 0.85; max-width: 640px; margin: 0 auto; }
+  .header .badge {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25); border-radius: 20px;
+    padding: 4px 14px; font-size: 0.8rem; margin-top: 12px;
+  }
+  .tabs {
+    display: flex; justify-content: center; gap: 4px; background: #fff;
+    border-bottom: 1px solid #e2e8f0; padding: 0 16px;
+    position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .tab-btn {
+    padding: 14px 20px; border: none; background: none; font-family: inherit;
+    font-size: 0.85rem; font-weight: 500; color: #64748b; cursor: pointer;
+    border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap;
+  }
+  .tab-btn:hover { color: #1e293b; }
+  .tab-btn.active { color: #2d5a8e; border-bottom-color: #2d5a8e; }
+  .container { max-width: 960px; margin: 0 auto; padding: 32px 24px 64px; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* Info blocks */
+  .info-block {
+    background: #fff; border-radius: 12px; padding: 28px; margin-bottom: 20px;
+    border: 1px solid #e2e8f0;
+  }
+  .info-block h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 12px; }
+  .info-block h4 { font-size: 1rem; font-weight: 600; margin: 16px 0 8px; color: #334155; }
+  .info-block p, .info-block li { color: #475569; font-size: 0.92rem; }
+  .info-block ul { padding-left: 20px; margin: 8px 0; }
+  .info-block li { margin-bottom: 4px; }
+  .info-block a { color: #2d5a8e; text-decoration: none; }
+  .info-block a:hover { text-decoration: underline; }
+  .warning {
+    background: #fef3c7; border-left: 4px solid #f59e0b; padding: 14px 18px;
+    border-radius: 0 8px 8px 0; margin: 14px 0; font-size: 0.88rem; color: #92400e;
+  }
+  .highlight {
+    background: #dbeafe; border-left: 4px solid #3b82f6; padding: 14px 18px;
+    border-radius: 0 8px 8px 0; margin: 14px 0; font-size: 0.88rem; color: #1e40af;
+  }
+  .meta-tag {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem;
+    color: #64748b; background: #f1f5f9; padding: 4px 10px; border-radius: 6px;
+  }
+  .meta-tag.cost { background: #fef3c7; color: #92400e; }
+  .meta-tag.time { background: #dbeafe; color: #1e40af; }
+  .meta-tag.docs { background: #f0fdf4; color: #166534; }
+
+  /* ===== Gantt Chart ===== */
+  .gantt-wrapper { overflow-x: auto; margin-bottom: 24px; }
+  .gantt {
+    display: grid; grid-template-columns: 220px repeat(32, 28px);
+    gap: 0; font-size: 0.78rem; min-width: 1100px;
+  }
+  .gantt-header {
+    background: #f1f5f9; font-weight: 600; padding: 8px 10px;
+    border-bottom: 1px solid #e2e8f0; color: #64748b; text-align: center;
+    position: sticky; top: 52px; z-index: 10;
+  }
+  .gantt-header.label { text-align: left; }
+  .gantt-row-label {
+    padding: 6px 10px; border-bottom: 1px solid #f1f5f9; font-weight: 500;
+    font-size: 0.8rem; display: flex; align-items: center; background: #fff;
+  }
+  .gantt-cell {
+    border-bottom: 1px solid #f1f5f9; border-right: 1px solid #f8fafc;
+    min-height: 32px; position: relative;
+  }
+  .gantt-bar {
+    position: absolute; top: 4px; bottom: 4px; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; color: #fff; font-weight: 500;
+    min-width: 28px; z-index: 5;
+  }
+  .bar-prep { background: #8b5cf6; }
+  .bar-astana { background: #2d5a8e; }
+  .bar-hub { background: #059669; }
+  .bar-wait { background: #d97706; opacity: 0.7; }
+  .bar-transfer { background: #dc2626; }
+  .bar-milestone {
+    position: absolute; top: 2px; width: 22px; height: 22px;
+    background: #059669; transform: rotate(45deg); z-index: 6;
+  }
+  .gantt-month-span {
+    background: #e2e8f0; font-weight: 600; color: #475569;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .gantt-legend {
+    display: flex; gap: 16px; flex-wrap: wrap; margin-top: 12px; font-size: 0.82rem;
+  }
+  .gantt-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .gantt-legend .dot { width: 12px; height: 12px; border-radius: 3px; }
+
+  /* TODO */
+  .todo-section {
+    background: #fff; border-radius: 12px; padding: 24px 28px;
+    margin-bottom: 20px; border: 1px solid #e2e8f0;
+  }
+  .todo-section h3 {
+    font-size: 1.1rem; font-weight: 600; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .phase-badge {
+    background: #2d5a8e; color: #fff; padding: 2px 10px;
+    border-radius: 12px; font-size: 0.75rem; font-weight: 500;
+  }
+  .phase-badge.transfer { background: #dc2626; }
+  .phase-badge.recurring { background: #059669; }
+  .todo-item {
+    display: flex; align-items: flex-start; gap: 12px; padding: 12px 0;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .todo-item:last-child { border-bottom: none; }
+  .todo-item input[type="checkbox"] {
+    margin-top: 3px; width: 18px; height: 18px; accent-color: #2d5a8e;
+    cursor: pointer; flex-shrink: 0;
+  }
+  .todo-text { flex: 1; }
+  .todo-title { font-weight: 500; font-size: 0.92rem; }
+  .todo-detail { font-size: 0.82rem; color: #64748b; margin-top: 2px; }
+  .todo-tags { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+
+  /* Budget table */
+  .budget-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .budget-table th {
+    background: #f1f5f9; padding: 12px 16px; text-align: left; font-weight: 600;
+    font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em; color: #64748b;
+  }
+  .budget-table td { padding: 12px 16px; border-bottom: 1px solid #f1f5f9; color: #475569; }
+  .budget-table tr:hover td { background: #fafbfc; }
+  .budget-table .total-row td {
+    font-weight: 700; color: #1e293b; border-top: 2px solid #e2e8f0; background: #f8fafc;
+  }
+  .budget-table .section-row td { font-weight: 600; color: #2d5a8e; background: #f8fafc; padding-top: 18px; }
+
+  /* Comparison table */
+  .compare-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 16px 0; }
+  .compare-table th { background: #f1f5f9; padding: 10px 14px; text-align: left; font-weight: 600; color: #475569; }
+  .compare-table td { padding: 10px 14px; border-bottom: 1px solid #f1f5f9; color: #475569; vertical-align: top; }
+  .compare-table .good { color: #059669; }
+  .compare-table .bad { color: #dc2626; }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .header { padding: 32px 20px 24px; }
+    .header h1 { font-size: 1.5rem; }
+    .tabs { overflow-x: auto; justify-content: flex-start; }
+    .tab-btn { padding: 12px 14px; font-size: 0.78rem; }
+    .container { padding: 20px 16px 48px; }
+    .info-block, .todo-section { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Открытие IT-компании в Казахстане</h1>
+  <p>ТОО по казахстанскому праву + Astana Hub + трансфер ownership</p>
+  <span class="badge">Актуально на март 2026</span>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('roadmap')">Roadmap</button>
+  <button class="tab-btn" onclick="switchTab('theory')">Теория</button>
+  <button class="tab-btn" onclick="switchTab('todo')">TODO-лист</button>
+  <button class="tab-btn" onclick="switchTab('transfer')">Трансфер</button>
+  <button class="tab-btn" onclick="switchTab('budget')">Смета</button>
+</div>
+
+<div class="container">
+
+<!-- ============================================================ -->
+<!-- TAB 1: ROADMAP — GANTT CHART -->
+<!-- ============================================================ -->
+<div id="roadmap" class="tab-content active">
+
+  <div class="info-block">
+    <h3>Диаграмма Ганта: март — октябрь 2026</h3>
+    <p style="color:#64748b;font-size:0.88rem;margin-bottom:16px;">Горизонтальная ось — недели. Каждая задача показана полоской с реальной длительностью. Прокрутите вправо для полного обзора.</p>
+
+    <div class="gantt-wrapper">
+      <div class="gantt">
+        <!-- Header row -->
+        <div class="gantt-header label">Задача</div>
+        <div class="gantt-header gantt-month-span" style="grid-column: span 4;">Март</div>
+        <div class="gantt-header gantt-month-span" style="grid-column: span 4;">Апрель</div>
+        <div class="gantt-header gantt-month-span" style="grid-column: span 5;">Май</div>
+        <div class="gantt-header gantt-month-span" style="grid-column: span 4;">Июнь</div>
+        <div class="gantt-header gantt-month-span" style="grid-column: span 4;">Июль</div>
+        <div class="gantt-header gantt-month-span" style="grid-column: span 5;">Авг</div>
+        <div class="gantt-header gantt-month-span" style="grid-column: span 4;">Сент</div>
+        <div class="gantt-header gantt-month-span" style="grid-column: span 2;">Окт</div>
+
+        <!-- Week sub-headers -->
+        <div class="gantt-header label" style="font-size:0.7rem;color:#94a3b8;">Неделя</div>
+        <div class="gantt-header" style="font-size:0.7rem;">1</div>
+        <div class="gantt-header" style="font-size:0.7rem;">2</div>
+        <div class="gantt-header" style="font-size:0.7rem;">3</div>
+        <div class="gantt-header" style="font-size:0.7rem;">4</div>
+        <div class="gantt-header" style="font-size:0.7rem;">5</div>
+        <div class="gantt-header" style="font-size:0.7rem;">6</div>
+        <div class="gantt-header" style="font-size:0.7rem;">7</div>
+        <div class="gantt-header" style="font-size:0.7rem;">8</div>
+        <div class="gantt-header" style="font-size:0.7rem;">9</div>
+        <div class="gantt-header" style="font-size:0.7rem;">10</div>
+        <div class="gantt-header" style="font-size:0.7rem;">11</div>
+        <div class="gantt-header" style="font-size:0.7rem;">12</div>
+        <div class="gantt-header" style="font-size:0.7rem;">13</div>
+        <div class="gantt-header" style="font-size:0.7rem;">14</div>
+        <div class="gantt-header" style="font-size:0.7rem;">15</div>
+        <div class="gantt-header" style="font-size:0.7rem;">16</div>
+        <div class="gantt-header" style="font-size:0.7rem;">17</div>
+        <div class="gantt-header" style="font-size:0.7rem;">18</div>
+        <div class="gantt-header" style="font-size:0.7rem;">19</div>
+        <div class="gantt-header" style="font-size:0.7rem;">20</div>
+        <div class="gantt-header" style="font-size:0.7rem;">21</div>
+        <div class="gantt-header" style="font-size:0.7rem;">22</div>
+        <div class="gantt-header" style="font-size:0.7rem;">23</div>
+        <div class="gantt-header" style="font-size:0.7rem;">24</div>
+        <div class="gantt-header" style="font-size:0.7rem;">25</div>
+        <div class="gantt-header" style="font-size:0.7rem;">26</div>
+        <div class="gantt-header" style="font-size:0.7rem;">27</div>
+        <div class="gantt-header" style="font-size:0.7rem;">28</div>
+        <div class="gantt-header" style="font-size:0.7rem;">29</div>
+        <div class="gantt-header" style="font-size:0.7rem;">30</div>
+        <div class="gantt-header" style="font-size:0.7rem;">31</div>
+        <div class="gantt-header" style="font-size:0.7rem;">32</div>
+
+        <!-- Row 1: Подготовка документов в РФ -->
+        <div class="gantt-row-label">Подготовка документов (РФ)</div>
+        <div class="gantt-cell" style="grid-column: span 3;"><div class="gantt-bar bar-prep" style="left:0;right:0;">2-3 нед</div></div>
+        <div class="gantt-cell" style="grid-column: span 29;"></div>
+
+        <!-- Row 2: Прилёт в Астану -->
+        <div class="gantt-row-label">Прилёт в Астану</div>
+        <div class="gantt-cell" style="grid-column: span 3;"></div>
+        <div class="gantt-cell"><div class="gantt-bar bar-astana" style="left:0;right:0;"></div></div>
+        <div class="gantt-cell" style="grid-column: span 28;"></div>
+
+        <!-- Row 3: ИИН + ЭЦП + РВП -->
+        <div class="gantt-row-label">ИИН + ЭЦП + подача РВП</div>
+        <div class="gantt-cell" style="grid-column: span 3;"></div>
+        <div class="gantt-cell" style="grid-column: span 2;"><div class="gantt-bar bar-astana" style="left:0;right:0;">1-5 дн</div></div>
+        <div class="gantt-cell" style="grid-column: span 27;"></div>
+
+        <!-- Row 4: Регистрация ТОО -->
+        <div class="gantt-row-label">Регистрация ТОО</div>
+        <div class="gantt-cell" style="grid-column: span 4;"></div>
+        <div class="gantt-cell" style="grid-column: span 1;"><div class="gantt-bar bar-astana" style="left:0;right:0;">1д</div></div>
+        <div class="gantt-cell" style="grid-column: span 27;"></div>
+
+        <!-- Row 5: Открытие банковского счёта -->
+        <div class="gantt-row-label">Банковский счёт + Kaspi Pay</div>
+        <div class="gantt-cell" style="grid-column: span 5;"></div>
+        <div class="gantt-cell" style="grid-column: span 1;"><div class="gantt-bar bar-astana" style="left:0;right:0;">1д</div></div>
+        <div class="gantt-cell" style="grid-column: span 26;"></div>
+
+        <!-- Row 6: Возврат в РФ -->
+        <div class="gantt-row-label" style="color:#8b5cf6;font-weight:600;">Возврат в РФ</div>
+        <div class="gantt-cell" style="grid-column: span 5;"></div>
+        <div class="gantt-cell" style="grid-column: span 1;"><div class="gantt-bar bar-prep" style="left:4px;right:4px;font-size:0.9rem;">&#9670;</div></div>
+        <div class="gantt-cell" style="grid-column: span 26;"></div>
+
+        <!-- Row 7: Подготовка пакета Astana Hub -->
+        <div class="gantt-row-label">Пакет документов Astana Hub</div>
+        <div class="gantt-cell" style="grid-column: span 5;"></div>
+        <div class="gantt-cell" style="grid-column: span 2;"><div class="gantt-bar bar-hub" style="left:0;right:0;">1-2 нед</div></div>
+        <div class="gantt-cell" style="grid-column: span 25;"></div>
+
+        <!-- Row 7: Подача заявки в Astana Hub -->
+        <div class="gantt-row-label">Заявка в Astana Hub</div>
+        <div class="gantt-cell" style="grid-column: span 7;"></div>
+        <div class="gantt-cell" style="grid-column: span 1;"><div class="gantt-bar bar-hub" style="left:0;right:0;"></div></div>
+        <div class="gantt-cell" style="grid-column: span 24;"></div>
+
+        <!-- Row 8: Рассмотрение заявки -->
+        <div class="gantt-row-label">Рассмотрение (до 15 р.д.)</div>
+        <div class="gantt-cell" style="grid-column: span 7;"></div>
+        <div class="gantt-cell" style="grid-column: span 4;"><div class="gantt-bar bar-wait" style="left:0;right:0;">~3 нед</div></div>
+        <div class="gantt-cell" style="grid-column: span 21;"></div>
+
+        <!-- Row 9: Получение статуса Astana Hub -->
+        <div class="gantt-row-label" style="color:#059669;font-weight:600;">Статус Astana Hub</div>
+        <div class="gantt-cell" style="grid-column: span 10;"></div>
+        <div class="gantt-cell" style="grid-column: span 1;"><div class="gantt-bar bar-hub" style="left:4px;right:4px;font-size:0.9rem;">&#9670;</div></div>
+        <div class="gantt-cell" style="grid-column: span 21;"></div>
+
+        <!-- Row 10: Операционная деятельность -->
+        <div class="gantt-row-label">Операционная деятельность</div>
+        <div class="gantt-cell" style="grid-column: span 11;"></div>
+        <div class="gantt-cell" style="grid-column: span 17;"><div class="gantt-bar bar-hub" style="left:0;right:0;opacity:0.5;">май — сент</div></div>
+        <div class="gantt-cell" style="grid-column: span 4;"></div>
+
+        <!-- Row 11: Kaspi Рассрочка (20 дн) -->
+        <div class="gantt-row-label">Kaspi Рассрочка (20+ дней)</div>
+        <div class="gantt-cell" style="grid-column: span 6;"></div>
+        <div class="gantt-cell" style="grid-column: span 3;"><div class="gantt-bar bar-wait" style="left:0;right:0;">20 дн</div></div>
+        <div class="gantt-cell" style="grid-column: span 23;"></div>
+
+        <!-- Row 12: Подготовка трансфера -->
+        <div class="gantt-row-label">Подготовка трансфера доли</div>
+        <div class="gantt-cell" style="grid-column: span 24;"></div>
+        <div class="gantt-cell" style="grid-column: span 3;"><div class="gantt-bar bar-transfer" style="left:0;right:0;opacity:0.6;">док-ты</div></div>
+        <div class="gantt-cell" style="grid-column: span 5;"></div>
+
+        <!-- Row 13: Приезд нового владельца -->
+        <div class="gantt-row-label">Приезд нового владельца</div>
+        <div class="gantt-cell" style="grid-column: span 27;"></div>
+        <div class="gantt-cell" style="grid-column: span 3;"><div class="gantt-bar bar-transfer" style="left:0;right:0;">ИИН+РВП+нотариус</div></div>
+        <div class="gantt-cell" style="grid-column: span 2;"></div>
+
+        <!-- Row 14: Перерегистрация ТОО -->
+        <div class="gantt-row-label" style="color:#dc2626;font-weight:600;">Перерегистрация ТОО</div>
+        <div class="gantt-cell" style="grid-column: span 29;"></div>
+        <div class="gantt-cell" style="grid-column: span 2;"><div class="gantt-bar bar-transfer" style="left:0;right:0;">5-7 дн</div></div>
+        <div class="gantt-cell" style="grid-column: span 1;"></div>
+      </div>
+    </div>
+
+    <div class="gantt-legend">
+      <span><span class="dot" style="background:#8b5cf6;"></span> Подготовка (РФ)</span>
+      <span><span class="dot" style="background:#2d5a8e;"></span> Регистрация (Астана)</span>
+      <span><span class="dot" style="background:#059669;"></span> Astana Hub</span>
+      <span><span class="dot" style="background:#d97706;"></span> Ожидание</span>
+      <span><span class="dot" style="background:#dc2626;"></span> Трансфер ownership</span>
+    </div>
+  </div>
+
+  <div class="warning">
+    <strong>Граждане РФ (ЕАЭС):</strong> виза C5 не нужна. Въезд по загранпаспорту без визы (до 90 дней). Оформляется РВП бизнес-иммигранта по прибытии.
+  </div>
+
+  <div class="highlight">
+    <strong>Минимальное присутствие:</strong> достаточно 7-10 рабочих дней в Астане для всех регистрационных действий. После регистрации ТОО и подачи заявки в Astana Hub можно вернуться в РФ — всё остальное делается удалённо через ЭЦП.
+  </div>
+
+  <div class="info-block">
+    <h3>Ключевые этапы</h3>
+    <table class="compare-table">
+      <tr><th>Этап</th><th>Срок</th><th>Что происходит</th></tr>
+      <tr><td><strong>1. Подготовка (РФ)</strong></td><td>2-3 недели</td><td>Справка о несудимости (Госуслуги, до 30 дн.), справка из реестра дисквалифицированных лиц (ФНС, 5 р.д.), бизнес-план, выбор юр. адреса</td></tr>
+      <tr><td><strong>2. ИИН</strong></td><td>1 рабочий день</td><td>ЦОН или МФЦА, паспорт + копия, бесплатно</td></tr>
+      <tr><td><strong>3. ЭЦП</strong></td><td>~1 час</td><td>ЦОН или МФЦА, только лично, нужен ИИН</td></tr>
+      <tr><td><strong>4. РВП</strong></td><td>подача: 1 час, решение: до 5 р.д.</td><td>Первое РВП на 90 дней со статусом бизнес-иммигранта</td></tr>
+      <tr><td><strong>5. Регистрация ТОО</strong></td><td>1 рабочий день</td><td>eGov Business (при наличии ЭЦП) или ЦОН</td></tr>
+      <tr><td><strong>6. Банковский счёт</strong></td><td>1 день</td><td>Kaspi / BCC / Freedom. Подключить Kaspi Pay.</td></tr>
+      <tr><td><strong>7. Подача заявки Astana Hub</strong></td><td>до 15 р.д.</td><td>Онлайн: бизнес-план + справка + документ на адрес. Можно подать перед отъездом</td></tr>
+      <tr style="background:#f0fdf4;"><td><strong>&#9992; Возврат в РФ</strong></td><td>после шага 7</td><td>Всё дальнейшее — удалённо через ЭЦП</td></tr>
+      <tr><td><strong>8. Статус Astana Hub</strong></td><td>~май 2026</td><td>Подписание договора <strong>удалённо через ЭЦП</strong>, получение сертификата</td></tr>
+      <tr><td><strong>9. Трансфер доли</strong></td><td>сент-окт 2026</td><td>Передача 100% доли + смена директора новому владельцу (гр. РФ)</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 2: THEORY -->
+<!-- ============================================================ -->
+<div id="theory" class="tab-content">
+
+  <div class="info-block">
+    <h3>1. Виза C5 vs РВП: что нужно гражданам РФ</h3>
+    <h4>Виза C5 (для граждан визовых стран)</h4>
+    <ul>
+      <li>Категория C5 — для бизнес-иммигрантов из стран с визовым режимом</li>
+      <li>Первичная: однократная, до 90 дней. Вторичная: многократная, до 2 лет</li>
+      <li>Документы: анкета, паспорт, мед. справка, страховка, справка о несудимости</li>
+      <li>Консульский сбор: 75 EUR / 80 USD</li>
+    </ul>
+    <div class="highlight">
+      <strong>Граждане РФ (ЕАЭС):</strong> виза C5 не требуется. Въезд по загранпаспорту до 90 дней. Оформляется РВП бизнес-иммигранта.
+    </div>
+    <h4>РВП бизнес-иммигранта (для граждан РФ / ЕАЭС) — подробно</h4>
+
+    <p><strong>3 этапа получения:</strong></p>
+
+    <p><strong>Этап 1: Первичное РВП (на 3 месяца)</strong></p>
+    <ul>
+      <li>Подаётся принимающей стороной через egov.kz</li>
+      <li>Рассмотрение: 1 рабочий день (обычно ответ через 2-3 часа)</li>
+      <li>РВП выдаётся электронным документом в личный кабинет</li>
+      <li><strong>Согласие акимата отменено с 2025 года</strong> — процедура упрощена</li>
+    </ul>
+    <p><em>Документы для первичного РВП:</em></p>
+    <table class="compare-table">
+      <tr><th>Документ</th><th>Где получить / подготовить</th><th>Примечание</th></tr>
+      <tr><td>Загранпаспорт</td><td>—</td><td>Срок действия >= сроку РВП</td></tr>
+      <tr><td>ИИН</td><td>ЦОН в Казахстане</td><td>Получить до подачи РВП</td></tr>
+      <tr><td>Справка о несудимости</td><td>Госуслуги / МФЦ в России</td><td>До 30 дней на изготовление</td></tr>
+      <tr><td>Справка из реестра дисквалифицированных лиц</td><td>ФНС России</td><td>5 р.д., 100 руб</td></tr>
+      <tr><td>Медицинская справка 028/у</td><td>Медучреждение в Казахстане</td><td>Только казахстанские мед. учреждения!</td></tr>
+      <tr><td>Дактилоскопия</td><td>Районное подразделение МВД в КЗ</td><td>Обязательна с 2024 года</td></tr>
+      <tr><td>Уведомление e-Qonaq</td><td>Принимающая сторона, в теч. 3 р.д.</td><td>Электронное уведомление о прибытии</td></tr>
+      <tr><td>Фото 35x45 мм</td><td>Делается в ЦОН при подаче</td><td></td></tr>
+      <tr><td>Договор аренды жилья</td><td>Заключить в КЗ</td><td>С актуальными данными</td></tr>
+    </table>
+
+    <p style="margin-top:16px;"><strong>Этап 2: Регистрация ТОО</strong> (в течение 90 дней действия первичного РВП)</p>
+    <ul>
+      <li>Зарегистрировать ТОО (eGov Business / ЦОН)</li>
+      <li>Открыть банковский счёт</li>
+      <li>При необходимости — внести уставный капитал</li>
+    </ul>
+
+    <p><strong>Этап 3: Продление РВП (до 1 года)</strong></p>
+    <ul>
+      <li>Подать заявление до истечения текущего РВП</li>
+      <li>Наличие активной регистрации как учредителя/собственника доли</li>
+      <li>Рассмотрение: 72 часа</li>
+      <li>Продлевается неограниченное количество раз при ведении бизнеса</li>
+    </ul>
+
+    <div class="warning">
+      <strong>Обязательства бизнес-иммигранта:</strong>
+      <ul style="margin-top:8px;">
+        <li>Проживать по указанному адресу (смена — в теч. 5 р.д.)</li>
+        <li>Уведомлять о каждом выезде/въезде</li>
+        <li>Продолжать вести бизнес (ликвидация ТОО = сокращение срока РВП)</li>
+        <li>Продлевать РВП до истечения срока</li>
+        <li><strong>Просрочка >10 суток = административное выдворение</strong></li>
+      </ul>
+    </div>
+
+    <div class="highlight">
+      <strong>С 1 июля 2026:</strong> двухуровневая система — принимающее лицо получает электронный запрос и может отказать (= отказ в РВП).
+    </div>
+
+    <p>
+      <a href="https://egov.kz/cms/ru/services/for_foreigners/00203002_mvd" target="_blank">eGov: РВП для иностранцев</a> |
+      <a href="https://vitaliberta.kz/blog/%D1%80%D0%B2%D0%BF_%D0%B1%D0%B8%D0%B7%D0%BD%D0%B5%D1%81_%D0%BC%D0%B8%D0%B3%D1%80%D0%B0%D0%BD%D1%82%D0%B0_%D0%BA%D0%B0%D0%B7%D0%B0%D1%85%D1%81%D1%82%D0%B0%D0%BD/" target="_blank">Подробный гайд по РВП</a>
+    </p>
+  </div>
+
+  <div class="info-block">
+    <h3>1.1. Сценарий минимального присутствия</h3>
+    <p>Если цель — приехать, зарегистрировать ТОО и уехать обратно в РФ, минимально необходимое время в Астане — <strong>7-10 рабочих дней</strong>.</p>
+
+    <h4>Что нужно сделать лично в Казахстане</h4>
+    <ul>
+      <li><strong>ИИН</strong> — только лично в ЦОН (с 01.01.2026 консульства не выдают)</li>
+      <li><strong>ЭЦП</strong> — только лично в ЦОН/МФЦА (нерезиденты не могут получить онлайн)</li>
+      <li><strong>Дактилоскопия</strong> — районное подразделение МВД</li>
+      <li><strong>Мед. справка 028/у</strong> — только казахстанское мед. учреждение</li>
+      <li><strong>РВП бизнес-иммигранта</strong> — подача через eGov (принимающей стороной)</li>
+      <li><strong>Регистрация ТОО</strong> — онлайн через eGov Business (при наличии ЭЦП) или в ЦОН</li>
+      <li><strong>Открытие банковского счёта</strong> — лично в отделении банка</li>
+    </ul>
+
+    <h4>Что можно сделать удалённо из РФ</h4>
+    <ul>
+      <li><strong>Подача заявки в Astana Hub</strong> — онлайн через registration.astanahub.com</li>
+      <li><strong>Отслеживание статуса заявки</strong> — личный кабинет Astana Hub</li>
+      <li><strong>Подписание договора Astana Hub</strong> — через ЭЦП удалённо</li>
+      <li><strong>Управление ТОО</strong> — eGov, банковские операции, отчёты</li>
+      <li><strong>Бухгалтерский учёт</strong> — удалённый бухгалтер в КЗ</li>
+      <li><strong>Трансфер доли</strong> — по доверенности (текущий владелец может не приезжать)</li>
+    </ul>
+
+    <div class="highlight">
+      <strong>Практический план:</strong> Приехать → за 7-10 дней получить ИИН, ЭЦП, РВП, зарегистрировать ТОО, открыть счёт, подать заявку в Astana Hub → вернуться в РФ. Всё остальное (договор Astana Hub, управление, бухгалтерия) — удалённо через ЭЦП.
+    </div>
+
+    <h4>РВП после отъезда</h4>
+    <ul>
+      <li>Первичное РВП выдаётся на <strong>3 месяца</strong></li>
+      <li>Граждане ЕАЭС могут свободно пересекать границу РФ-КЗ</li>
+      <li>После регистрации ТОО РВП <strong>не обязательно продлевать</strong>, если вы не планируете возвращаться для личных действий</li>
+      <li>Управлять компанией можно удалённо через ЭЦП (eGov, Astana Hub, банк)</li>
+      <li>При повторном визите для каких-либо действий — нужно будет заново оформить РВП</li>
+    </ul>
+    <div class="warning">
+      <strong>Формально</strong> РВП обязывает проживать по указанному адресу и уведомлять о выезде/въезде. На практике для граждан ЕАЭС, уезжающих после регистрации ТОО, это не создаёт проблем — РВП просто истекает через 3 месяца. Но если планируете возвращаться, продлевайте до истечения.
+    </div>
+  </div>
+
+  <div class="info-block">
+    <h3>1.2. Два адреса: личный vs юридический</h3>
+    <p>При регистрации ТОО и оформлении РВП вам потребуются <strong>два разных адреса</strong> — не путайте их:</p>
+    <table class="compare-table">
+      <tr><th></th><th>Адрес проживания (для РВП)</th><th>Юридический адрес ТОО</th></tr>
+      <tr>
+        <td><strong>Для чего</strong></td>
+        <td>Регистрация РВП, уведомление e-Qonaq</td>
+        <td>Регистрация ТОО, заявка в Astana Hub</td>
+      </tr>
+      <tr>
+        <td><strong>Варианты</strong></td>
+        <td>Квартира (договор аренды) или отель</td>
+        <td>Виртуальный офис, арендованное помещение, квартира с согласием собственника</td>
+      </tr>
+      <tr>
+        <td><strong>Документы</strong></td>
+        <td>Договор аренды + согласие собственника (или подтверждение от отеля)</td>
+        <td>Договор аренды помещения / виртуального офиса</td>
+      </tr>
+      <tr>
+        <td><strong>Могут совпадать?</strong></td>
+        <td colspan="2" style="text-align:center;">Могут, но не обязательно. Часто это разные адреса.</td>
+      </tr>
+    </table>
+
+    <h4>Отель vs квартира для РВП</h4>
+    <table class="compare-table">
+      <tr><th></th><th>Отель</th><th>Квартира (аренда)</th></tr>
+      <tr>
+        <td><strong>e-Qonaq</strong></td>
+        <td class="good">Отель подаёт автоматически</td>
+        <td>Арендодатель подаёт (или его представитель)</td>
+      </tr>
+      <tr>
+        <td><strong>Для РВП</strong></td>
+        <td class="bad">Может не подойти — для РВП обычно требуется адрес проживания с согласием собственника (уточнять в ЦОН)</td>
+        <td class="good">Подходит — договор аренды + согласие / присутствие собственника в ЦОН</td>
+      </tr>
+      <tr>
+        <td><strong>Стоимость</strong></td>
+        <td>от 13 750 тг/ночь (~2 500 руб)</td>
+        <td>от 80 000 - 150 000 тг/мес (~14 500 - 27 000 руб)</td>
+      </tr>
+      <tr>
+        <td><strong>Рекомендация</strong></td>
+        <td>Подходит для первых дней (пока ищете квартиру)</td>
+        <td class="good">Лучший вариант для подачи РВП</td>
+      </tr>
+    </table>
+    <div class="warning">
+      <strong>Принимающая сторона для e-Qonaq:</strong> отель подаёт уведомление автоматически. Если вы арендуете квартиру — уведомление подаёт арендодатель (принимающая сторона) в течение 3 рабочих дней. Найти принимающую сторону нужно заранее!
+    </div>
+
+    <h4>Аренда жилья для РВП: пошаговая инструкция</h4>
+
+    <p><strong>Пакет документов от собственника:</strong></p>
+    <table class="compare-table">
+      <tr><th>Документ</th><th>Что это</th><th>Кто готовит</th></tr>
+      <tr>
+        <td><strong>Согласие на проживание</strong></td>
+        <td>Официальное разрешение собственника на проживание иностранца по данному адресу (миграционный документ)</td>
+        <td>Собственник — одним из 3 способов (см. ниже)</td>
+      </tr>
+      <tr>
+        <td><strong>Договор аренды</strong></td>
+        <td>Гражданско-правовой контракт на аренду жилья. Формально не обязателен для РВП, но настоятельно рекомендуется</td>
+        <td>Составляется совместно (арендодатель + арендатор)</td>
+      </tr>
+      <tr>
+        <td><strong>Копия удостоверения личности</strong></td>
+        <td>Паспорт / удостоверение собственника</td>
+        <td>Собственник предоставляет копию</td>
+      </tr>
+      <tr>
+        <td><strong>Документ о праве собственности</strong></td>
+        <td>Выписка из реестра недвижимости, подтверждающая владение</td>
+        <td>Собственник запрашивает (egov.kz или ЦОН)</td>
+      </tr>
+    </table>
+
+    <p style="margin-top:16px;"><strong>3 варианта оформления согласия (с 2025 года):</strong></p>
+    <table class="compare-table">
+      <tr><th>Способ</th><th>Суть</th><th>Стоимость</th><th>Удобство</th></tr>
+      <tr>
+        <td><strong>1. Нотариальное согласие</strong></td>
+        <td>Отдельный документ: ФИО собственника, адрес, разрешение конкретному иностранцу, срок проживания, подпись, печать нотариуса</td>
+        <td>5 000 - 10 000 тг</td>
+        <td>Собственник может оформить без вашего присутствия</td>
+      </tr>
+      <tr>
+        <td><strong>2. Личное присутствие в ЦОН</strong></td>
+        <td>Собственник и иностранец вместе приходят в ЦОН, оба подписывают заявление</td>
+        <td class="good">Бесплатно</td>
+        <td class="good">Самый простой — не нужен нотариус</td>
+      </tr>
+      <tr>
+        <td><strong>3. Заявка через eGov.kz</strong></td>
+        <td>Собственник подаёт заявление на портале eGov.kz (нужна ЭЦП собственника)</td>
+        <td class="good">Бесплатно</td>
+        <td>Собственнику нужна ЭЦП</td>
+      </tr>
+    </table>
+
+    <div class="highlight">
+      <strong>Рекомендация:</strong> вариант 2 (личное присутствие в ЦОН) — самый простой и бесплатный. Попросите собственника прийти с вами в ЦОН при подаче документов на РВП.
+    </div>
+
+    <p style="margin-top:16px;"><strong>Где искать жильё в Астане:</strong></p>
+    <ul>
+      <li><strong><a href="https://krisha.kz/arenda/kvartiry/astana/" target="_blank">Krisha.kz</a></strong> — крупнейший портал недвижимости КЗ. Фильтр «без посредников» для контакта напрямую с собственниками</li>
+      <li><strong><a href="https://www.kn.kz/astana/arenda-kvartir" target="_blank">kn.kz</a></strong> — верифицированные объявления от собственников и агентов</li>
+      <li><strong><a href="https://avi.kz/astana/nedvizhimost/arenda-nedvizhimosti/arenda-kvartir/" target="_blank">avi.kz</a></strong> — казахстанский аналог Avito</li>
+      <li><strong><a href="https://www.olx.kz/nedvizhimost/kvartiry/arenda/astana/" target="_blank">OLX.kz</a></strong> — доска объявлений</li>
+      <li><strong><a href="https://astana.sutochno.com/" target="_blank">Sutochno.com</a></strong> — посуточная аренда (для первых дней)</li>
+    </ul>
+
+    <div class="highlight">
+      <strong>Сценарий «отель → квартира → РВП»:</strong><br>
+      <strong>День 1:</strong> Прилёт в Астану, заселение в отель. Отель автоматически подаёт e-Qonaq (в теч. 3 р.д.).<br>
+      <strong>Дни 1-3:</strong> Параллельно — поиск квартиры (начать на Krisha.kz ещё ДО приезда!). Осмотр, переговоры с собственником.<br>
+      <strong>День 3-4:</strong> Подписание договора аренды. Переезд из отеля. Собственник подаёт уведомление о смене адреса через e-Qonaq (в теч. 3 р.д.).<br>
+      <strong>День 4-5:</strong> Подача документов на РВП в ЦОН с адресом квартиры + согласие собственника (лично в ЦОН вместе).
+    </div>
+
+    <p style="margin-top:16px;"><strong>Смена адреса (отель → квартира):</strong></p>
+    <ul>
+      <li>При смене места проживания <strong>обязательно</strong> подать уведомление в e-Qonaq</li>
+      <li>Срок: <strong>3 рабочих дня</strong> после переезда</li>
+      <li>Подаёт <strong>принимающая сторона</strong> (новый арендодатель / собственник квартиры)</li>
+      <li>Способы: портал <a href="https://vmp.gov.kz" target="_blank">vmp.gov.kz</a>, приложение e-Qonaq (iOS/Android), лично в миграционной полиции</li>
+    </ul>
+    <div class="warning">
+      <strong>Штраф за несвоевременное уведомление:</strong> 10-20 МРП (43 250 - 86 500 тг в 2026 г.) для принимающей стороны. Убедитесь, что арендодатель подал уведомление вовремя!
+    </div>
+
+    <p style="margin-top:16px;"><strong>Что спросить у собственника при первом контакте:</strong></p>
+    <ul>
+      <li>Готов ли выступить <strong>принимающей стороной</strong> для иностранного гражданина?</li>
+      <li>Готов ли подать уведомление в <strong>e-Qonaq</strong> (в течение 3 р.д.)?</li>
+      <li>Готов ли прийти в <strong>ЦОН</strong> вместе с вами для оформления согласия (или оформить нотариально)?</li>
+      <li>Есть ли <strong>документ на право собственности</strong> на жильё?</li>
+      <li>Готов ли подписать <strong>договор аренды</strong>?</li>
+      <li>Если квартира в <strong>совместной собственности</strong> — нужно согласие всех собственников</li>
+    </ul>
+  </div>
+
+  <div class="info-block">
+    <h3>1.3. Удалённое управление из РФ</h3>
+    <p>После регистрации ТОО и возвращения в Россию, компанией можно управлять удалённо:</p>
+    <ul>
+      <li><strong>ЭЦП</strong> — работает из любой точки мира. Позволяет подписывать документы на eGov, в Astana Hub, банковских системах</li>
+      <li><strong>eGov Business</strong> — подача отчётов, изменения в ТОО, получение справок</li>
+      <li><strong>Astana Hub портал</strong> — отслеживание статуса, загрузка отчётов, подписание документов</li>
+      <li><strong>Банк</strong> — онлайн-банкинг для юр. лиц (Kaspi, BCC, Freedom)</li>
+      <li><strong>Бухгалтер</strong> — можно нанять удалённого бухгалтера в Казахстане (25 000 - 60 000 тг/мес)</li>
+      <li><strong>КИК-уведомление</strong> — подаётся в ФНС России через nalog.gov.ru</li>
+    </ul>
+    <div class="highlight">
+      <strong>Важно:</strong> ЭЦП, полученная в ЦОН, действует 1 год. После истечения её нужно <strong>продлить удалённо</strong> через сайт NCA (pki.gov.kz) — для продления личное присутствие не требуется, если ранее вы уже получали ЭЦП лично.
+    </div>
+  </div>
+
+  <div class="info-block">
+    <h3>1.4. Нотариальное заверение и перевод документов</h3>
+    <p>Какие документы, где заверять и переводить:</p>
+    <table class="compare-table">
+      <tr><th>Документ</th><th>Где подготовить</th><th>Заверение</th><th>Перевод</th></tr>
+      <tr>
+        <td>Справка о несудимости</td>
+        <td>Россия (Госуслуги/МФЦ)</td>
+        <td>Апостиль не нужен (РФ и КЗ — взаимное признание). Нотариальный перевод достаточен.</td>
+        <td>Нотариальный перевод на казахский или русский — в КЗ</td>
+      </tr>
+      <tr>
+        <td>Справка из реестра дисквалифицированных лиц</td>
+        <td>Россия (ФНС)</td>
+        <td>Нотариальный перевод достаточен</td>
+        <td>Перевод в КЗ (документ на русском — может не потребоваться)</td>
+      </tr>
+      <tr>
+        <td>Паспорт (копия)</td>
+        <td>—</td>
+        <td>Нотариально заверенная копия + перевод в КЗ</td>
+        <td>Нотариальный перевод на казахский/русский — в КЗ</td>
+      </tr>
+      <tr>
+        <td>Доверенность (для трансфера доли)</td>
+        <td>Россия (нотариус)</td>
+        <td><strong>Апостиль НЕ нужен</strong> (Кишинёвская конвенция — взаимное признание). Только нотариальное удостоверение</td>
+        <td>Нотариальный перевод на казахский — в КЗ</td>
+      </tr>
+      <tr>
+        <td>Согласие супруга</td>
+        <td>Россия или Казахстан (нотариус)</td>
+        <td>Нотариальное заверение. Апостиль НЕ нужен (Кишинёвская конвенция)</td>
+        <td>Перевод если на русском — обычно не нужен</td>
+      </tr>
+      <tr>
+        <td>Устав ТОО, решение о создании</td>
+        <td>Казахстан</td>
+        <td>Нотариальное заверение в КЗ</td>
+        <td>Составляется на русском/казахском — перевод не нужен</td>
+      </tr>
+      <tr>
+        <td>Медицинская справка 028/у</td>
+        <td>Казахстан (мед. учреждение)</td>
+        <td>Не требует заверения</td>
+        <td>Выдаётся в КЗ — перевод не нужен</td>
+      </tr>
+    </table>
+    <div class="highlight">
+      <strong>РФ и КЗ:</strong> между Россией и Казахстаном действует взаимное признание документов (Кишинёвская конвенция 1993 г.). Для <strong>всех</strong> нотариально удостоверенных документов достаточно нотариального перевода <strong>без апостиля</strong> — включая доверенности, согласия супругов и другие документы для сделок.
+    </div>
+    <p>Апостиль в КЗ: 0,5 МРП (~2 163 тг), срок: до 5 рабочих дней в ЦОН.</p>
+  </div>
+
+  <div class="info-block">
+    <h3>2. ИИН (Индивидуальный идентификационный номер)</h3>
+    <ul>
+      <li>12-значный номер, аналог ИНН в России</li>
+      <li>Получение: лично в ЦОН, паспорт + копия, 1 рабочий день, бесплатно</li>
+    </ul>
+    <div class="warning">
+      <strong>С 01.01.2026:</strong> выдача ИИН через дипмиссии/консульства приостановлена. Получение только лично в Казахстане (ЦОН) или eResidency.
+    </div>
+    <h4>eResidency vs обычный ИИН</h4>
+    <ul>
+      <li>eResidency ИИН <strong>не аналогичен обычному</strong> — нет доступа к eGov/eLicense</li>
+      <li>Через eResidency можно зарегистрировать компанию только в МФЦА (AIFC)</li>
+      <li><strong>Для ТОО + Astana Hub нужен обычный ИИН из ЦОН</strong></li>
+    </ul>
+    <p><a href="https://egov.kz/cms/ru/services/pass011_mvd" target="_blank">eGov: формирование ИИН</a></p>
+  </div>
+
+  <div class="info-block">
+    <h3>3. ЭЦП (Электронная цифровая подпись)</h3>
+    <ul>
+      <li>Нужна для: регистрации ТОО онлайн, подписания договора Astana Hub, eGov</li>
+      <li>Нерезиденты <strong>не могут получить ЭЦП онлайн</strong> — только лично в ЦОН/МФЦА</li>
+      <li>Требуется: ИИН + паспорт</li>
+      <li>Ключи на email/USB за ~1 час</li>
+    </ul>
+    <p><a href="https://egov.kz/cms/ru/services/reservation_for_busunesses/pass_onlineecp" target="_blank">eGov: получение ЭЦП</a></p>
+  </div>
+
+  <div class="info-block">
+    <h3>4. Регистрация ТОО</h3>
+    <h4>Онлайн (eGov Business при наличии ЭЦП)</h4>
+    <ul>
+      <li>Название, учредители, директор, юр. адрес, ОКЭД</li>
+      <li>БИН присваивается автоматически</li>
+      <li>МСБ — без регистрационного сбора</li>
+    </ul>
+
+    <h4>Наименование ТОО</h4>
+    <ul>
+      <li>Название указывается на <strong>3 языках: казахский, русский, английский</strong></li>
+      <li>Английские / латинские названия <strong>разрешены</strong> — можно даже миксовать (например, «ТОО AppName»)</li>
+      <li>Проверка доступности: <a href="https://egov.kz/cms/ru/services/passP3010_mu" target="_blank">eGov — проверка наименования ТОО</a> (моментальный результат)</li>
+    </ul>
+    <div class="warning">
+      <strong>Запрещено:</strong> совпадение с существующими до степени смешения, названия гос. органов, имена физ. лиц без их согласия, специализированные слова («банк», «страховая» и т.д.) без соответствующей лицензии.
+    </div>
+
+    <h4>ОКЭД-коды для мобильных приложений</h4>
+    <table class="compare-table">
+      <tr><th>Код</th><th>Название</th><th>Подходит для</th></tr>
+      <tr><td><strong>62.01</strong></td><td>Деятельность в области компьютерного программирования</td><td class="good">Основной код — разработка мобильных приложений</td></tr>
+      <tr><td><strong>62.011</strong></td><td>Разработка программного обеспечения</td><td class="good">Уточнённый — явно покрывает мобильные приложения</td></tr>
+      <tr><td>58.29</td><td>Издание прочего программного обеспечения</td><td>Публикация приложений в App Store / Google Play</td></tr>
+      <tr><td>63.11</td><td>Деятельность по обработке данных</td><td>Если приложение обрабатывает/хранит данные</td></tr>
+      <tr><td>63.12</td><td>Деятельность веб-порталов</td><td>Если есть веб-версия продукта</td></tr>
+    </table>
+    <div class="highlight">
+      <strong>Для Astana Hub:</strong> с 2026 года минимум <strong>90% годового дохода</strong> должно поступать от приоритетных видов деятельности (ИКТ). Код 62.01/62.011 входит в приоритетный список. Всего 19 приоритетных категорий: разработка ПО, AI, блокчейн, IoT, VR/AR, геймдев, кибербезопасность, облачные вычисления и др.
+    </div>
+
+    <h4>Документы</h4>
+    <ul>
+      <li>Паспорт с РВП</li>
+      <li>Устав, решение о создании, учредительный договор (если >1 учредитель)</li>
+      <li>Для иностранцев: нотариальное заверение + перевод</li>
+    </ul>
+    <h4>Уставный капитал</h4>
+    <ul>
+      <li><strong>Для МСБ (малый бизнес):</strong> минимальный уставный капитал = <strong>0 тенге</strong> (можно любую сумму)</li>
+      <li><strong>Для бизнес-иммигрантов (РВП):</strong> акимат может запросить подтверждение 100 МРП (432 500 тг) — уточняйте на месте</li>
+      <li>Средний и крупный бизнес: обязательно не менее 100 МРП</li>
+    </ul>
+    <p><a href="https://www.gov.kz/situations/99/intro?lang=ru" target="_blank">GOV.KZ: регистрация ТОО</a></p>
+  </div>
+
+  <div class="info-block">
+    <h3>5. Astana Hub — налоговые льготы</h3>
+    <h4>Что даёт участие (с 2026)</h4>
+    <ul>
+      <li>КПН: <strong>0%</strong> по доходам от приоритетной деятельности</li>
+      <li>НДС: <strong>0%</strong> по реализации товаров/работ/услуг собственного производства</li>
+      <li>ИПН: <strong>снижен</strong></li>
+      <li>Социальный налог: <strong>0%</strong></li>
+      <li>Налог на дивиденды нерезидентам: <strong>0%</strong></li>
+    </ul>
+    <div class="warning">
+      <strong>Важно — реклама!</strong> Рекламные платежи нерезидентам (Google Ads, Meta Ads и т.д.) облагаются <strong>КПН 20% у источника выплаты</strong>. Льготы Astana Hub это <strong>НЕ покрывают</strong>. Учитывайте в бюджете!
+    </div>
+    <h4>Требования</h4>
+    <ul>
+      <li>ТОО без филиалов, доход только от приоритетных ИКТ-видов</li>
+      <li>С 2026: минимум <strong>90% годового дохода</strong> — от приоритетных видов</li>
+      <li>Побочные виды деятельности — в отдельное юрлицо</li>
+      <li>Минимальный срок участия: <strong>1 год</strong>. Продление — подать за 10 р.д. до истечения</li>
+    </ul>
+
+    <h4>5.1. Бизнес-план: структура и требования</h4>
+    <p>Бизнес-план — <strong>главный документ</strong> для комиссии Astana Hub. Официальный шаблон в формате <strong>XLSX</strong> — скачивается на <a href="https://astanahub.com/ru/registration/" target="_blank">странице регистрации</a> (Приложение 3 к Правилам деятельности Astana Hub).</p>
+
+    <p><strong>15 обязательных разделов:</strong></p>
+    <table class="compare-table">
+      <tr><th>#</th><th>Раздел</th><th>На что обращает внимание комиссия</th></tr>
+      <tr><td>1</td><td>Описание проекта</td><td>Чёткое определение продукта, проблемы и решения</td></tr>
+      <tr><td>2</td><td>Основание прав на продукт</td><td>Своя разработка или лицензия? Доказательства прав на ИС</td></tr>
+      <tr><td>3</td><td>Информация об авторе / команде</td><td>Технические компетенции, опыт в ИТ</td></tr>
+      <tr><td>4</td><td><strong>Техническая архитектура</strong></td><td class="bad"><strong>Самый проверяемый раздел!</strong> Стек технологий, серверная инфраструктура, API, БД</td></tr>
+      <tr><td>5</td><td>Описание функционала</td><td>Что делает приложение, основные фичи</td></tr>
+      <tr><td>6</td><td>Целевая аудитория / рынок</td><td>Анализ рынка, сегменты пользователей, TAM/SAM/SOM</td></tr>
+      <tr><td>7</td><td>Конкурентный анализ</td><td>Прямые/косвенные конкуренты, ваши преимущества</td></tr>
+      <tr><td>8</td><td>Стратегия монетизации</td><td>Модель выручки: подписки, in-app purchases, реклама, freemium</td></tr>
+      <tr><td>9</td><td><strong>Финансовая модель (3 года)</strong></td><td>R&D, маркетинг, инфраструктура, персонал, cash flow. Данные за каждый год</td></tr>
+      <tr><td>10</td><td>KPI / метрики</td><td>Пользователи, выручка, retention, конверсия. Данные за каждый год</td></tr>
+      <tr><td>11</td><td>Дорожная карта (5 лет)</td><td>Этапы развития продукта по годам</td></tr>
+      <tr><td>12</td><td><strong>Стратегия экспорта</strong></td><td class="bad"><strong>Обязательный раздел!</strong> Целевые рынки за пределами КЗ, план выхода</td></tr>
+      <tr><td>13</td><td>Маркетинговая стратегия</td><td>Каналы привлечения, бюджет, стратегия роста. Данные за каждый год</td></tr>
+      <tr><td>14</td><td>Доказательства прав на ИС</td><td>Свидетельства, патенты, авторские договоры</td></tr>
+      <tr><td>15</td><td>Обоснование доходов</td><td>Почему заявленные цифры реалистичны</td></tr>
+    </table>
+
+    <div class="highlight">
+      <strong>Советы:</strong>
+      <ul style="margin-top:8px;">
+        <li><strong>Финансы</strong> — консервативные прогнозы лучше, чем амбициозные. Комиссия отклоняет нереалистичные цифры</li>
+        <li><strong>Техническая архитектура</strong> — покажите, что продукт реально разрабатывается: стек, схема, репозиторий</li>
+        <li><strong>Экспорт</strong> — обязателен. Покажите хотя бы 1-2 рынка за пределами КЗ (App Store/Google Play = глобальный экспорт)</li>
+        <li><strong>Разделы 9, 10, 12, 13</strong> — требуют данных за <strong>каждый год</strong> на весь заявленный срок участия</li>
+      </ul>
+    </div>
+
+    <h4>5.2. Полный список документов для заявки</h4>
+    <table class="compare-table">
+      <tr><th>#</th><th>Документ</th><th>Детали</th></tr>
+      <tr><td>1</td><td><strong>Свидетельство о гос. регистрации ТОО</strong></td><td>Выдаётся при регистрации через eGov / ЦОН</td></tr>
+      <tr><td>2</td><td><strong>Подтверждение полномочий</strong></td><td>Приказ о назначении директора или доверенность</td></tr>
+      <tr><td>3</td><td><strong>Бизнес-план</strong></td><td>По шаблону Приложения 3 (XLSX), 15 разделов (см. выше)</td></tr>
+      <tr><td>4</td><td><strong>Справка об отсутствии налоговой задолженности</strong></td><td><strong>Не старше 10 календарных дней!</strong> Получить через eGov.kz. Допустимый долг: ≤ 6 МРП (25 950 тг)</td></tr>
+      <tr><td>5</td><td><strong>Документ на юр. адрес</strong></td><td>Договор аренды, безвозмездного пользования или нотариальное согласие собственника. Адрес может быть <strong>в любом городе КЗ</strong></td></tr>
+      <tr><td>6</td><td><strong>Штатное расписание</strong></td><td>Текущий состав и прогноз по сотрудникам</td></tr>
+    </table>
+
+    <h4>5.3. Процесс регистрации: 7 шагов</h4>
+    <table class="compare-table">
+      <tr><th>Шаг</th><th>Что происходит</th><th>Срок</th></tr>
+      <tr><td><strong>1</strong></td><td>Подача заявки на <a href="https://registration.astanahub.com/" target="_blank">registration.astanahub.com</a> с загрузкой документов</td><td>—</td></tr>
+      <tr><td><strong>2</strong></td><td>Предварительная проверка комплектности</td><td>до 5 р.д.</td></tr>
+      <tr><td><strong>3</strong></td><td>Рассмотрение комиссией (техническая экспертиза бизнес-плана)</td><td>до 10 р.д.</td></tr>
+      <tr><td><strong>4</strong></td><td>Уведомление о решении в личном кабинете</td><td>—</td></tr>
+      <tr><td><strong>5</strong></td><td>Подписание договора (через ЭЦП — можно удалённо из РФ!)</td><td>—</td></tr>
+      <tr><td><strong>6</strong></td><td>Выдача сертификата участника</td><td>—</td></tr>
+      <tr><td><strong>7</strong></td><td>Включение в реестр участников Astana Hub</td><td>—</td></tr>
+    </table>
+    <p style="margin-top:8px;"><strong>Итого:</strong> до <strong>15 рабочих дней</strong>. Регистрация <strong>бесплатна</strong>.</p>
+
+    <h4>5.4. После одобрения</h4>
+    <ul>
+      <li><strong>Налоговые льготы</strong> начинают действовать <strong>автоматически</strong> с даты регистрации в качестве участника</li>
+      <li><strong>Договор</strong> подписывается ЭЦП по типовому образцу (<a href="https://astanahub.com/media/Agreement..pdf" target="_blank">шаблон договора</a>)</li>
+    </ul>
+
+    <h4>Обязательства после регистрации</h4>
+    <table class="compare-table">
+      <tr><th>Обязательство</th><th>Срок</th></tr>
+      <tr><td>Членский сбор: <strong>1% от квартального дохода</strong></td><td>до <strong>25-го</strong> числа месяца после квартала</td></tr>
+      <tr><td>Квартальный отчёт о ходе проекта</td><td>до 10-го числа месяца после квартала</td></tr>
+      <tr><td>Годовой отчёт</td><td>до 10 января</td></tr>
+      <tr><td>Налоговая отчётность</td><td>до 15 апреля</td></tr>
+      <tr><td>Уведомления об изменениях (учредители, адрес, реквизиты)</td><td>в течение 10 рабочих дней</td></tr>
+    </table>
+
+    <div class="warning">
+      <strong>Топ-3 причины отказа в регистрации:</strong>
+      <ol style="margin-top:8px;">
+        <li><strong>Деятельность не ИТ</strong> — продукт не соответствует приоритетным видам (перепродажа, маркетплейс без собственной разработки)</li>
+        <li><strong>Перепродажа без прав на ИС</strong> — компания перепродаёт чужое ПО, не имея прав интеллектуальной собственности</li>
+        <li><strong>Неполный / размытый бизнес-план</strong> — заполнены не все 15 разделов, нет экспортной стратегии, нереалистичные финансы</li>
+      </ol>
+    </div>
+
+    <div class="warning">
+      <strong>Комплаенс:</strong> запрещено взаимодействие с санкционными лицами/компаниями. Ведите перечень контрагентов.
+    </div>
+
+    <p>
+      <a href="https://astanahub.com/ru/registration/" target="_blank">Astana Hub: регистрация</a> |
+      <a href="https://registration.astanahub.com/" target="_blank">Портал подачи</a> |
+      <a href="https://astanahub.com/media/Document_for_registration_of_participants_U7fCpb8.pdf" target="_blank">Документы (PDF)</a> |
+      <a href="https://astanahub.com/ru/blog/kak-stat-uchastnikom-astana-hub-v-2026" target="_blank">Как стать участником в 2026</a>
+    </p>
+  </div>
+
+  <div class="info-block">
+    <h3>6. Kaspi Bank — рассрочка</h3>
+    <ul>
+      <li>Kaspi Pay: подключение бесплатно, за 5 минут</li>
+      <li><strong>Kaspi Рассрочка:</strong> клиенты-граждане РК покупают в рассрочку без переплаты</li>
+      <li>Полная сумма зачисляется продавцу сразу</li>
+      <li>Комиссия для бизнеса: <strong>12-15%</strong></li>
+      <li>Требование: Kaspi Pay активен минимум 20 дней за последние 2 месяца</li>
+    </ul>
+    <p><a href="https://kaspi.kz/kaspipay" target="_blank">Kaspi Pay</a></p>
+  </div>
+
+  <div class="info-block">
+    <h3>7. Налоги и учёт</h3>
+    <ul>
+      <li>МРП 2026: <strong>4 325 тг</strong></li>
+      <li>Упрощённая декларация: 4% с дохода (акиматы: 2-6%)</li>
+      <li>С Astana Hub: КПН 0%, НДС 0%</li>
+      <li>Раздельный учёт по каждому объекту ИС</li>
+      <li>Доходы от рекламы, in-app purchases, подписок — доходы от ИС</li>
+    </ul>
+  </div>
+
+  <div class="info-block">
+    <h3>8. КИК — уведомление ФНС России</h3>
+    <ul>
+      <li>Уведомление о КИК: <strong>до 30 апреля</strong> следующего года</li>
+      <li>Обязательно даже при нулевом доходе/убытке</li>
+      <li>Штраф за неподачу: 500 000 руб. за каждую КИК</li>
+      <li>Подача: ЛК на nalog.gov.ru</li>
+    </ul>
+    <p><a href="https://www.nalog.gov.ru/rn77/taxation/cfcomp/notif_part/" target="_blank">ФНС: уведомление КИК</a></p>
+  </div>
+
+  <div class="info-block">
+    <h3>9. Передача доли ТОО (теория)</h3>
+    <h4>Способы передачи</h4>
+    <ul>
+      <li><strong>Продажа (купля-продажа)</strong> — по рыночной или номинальной цене</li>
+      <li><strong>Дарение</strong> — безвозмездная передача</li>
+    </ul>
+    <h4>Обязательные условия</h4>
+    <ul>
+      <li>Договор передачи — <strong>обязательно у нотариуса в Казахстане</strong></li>
+      <li>Можно по доверенности (если одна из сторон не может приехать)</li>
+      <li>Перерегистрация ТОО в ЦОН обязательна (ст. 42 ГК РК)</li>
+      <li>Пошлина: 6,5 МРП = <strong>28 113 тг</strong></li>
+      <li>Новый владелец-иностранец обязан иметь РВП бизнес-иммигранта</li>
+    </ul>
+    <p>
+      <a href="https://pravosite.kz/articles/post/1340-poryadok-pereregistracii-v-sluchae-otchuzhdeniya-prodazhi-dareniya-100-doli-v-too" target="_blank">Порядок перерегистрации при отчуждении доли</a>
+    </p>
+  </div>
+
+  <div class="info-block">
+    <h3>10. Источники</h3>
+    <h4>Astana Hub</h4>
+    <ul>
+      <li><a href="https://astanahub.com/ru/registration/" target="_blank">Регистрация и FAQ</a></li>
+      <li><a href="https://registration.astanahub.com/" target="_blank">Портал регистрации</a></li>
+      <li><a href="https://astanahub.com/media/Agreement..pdf" target="_blank">Договор участника</a></li>
+      <li><a href="https://astanahub.com/media/Corporate_Income_Tax_Rules_intellectual_property_item.pdf" target="_blank">Правила КПН по ИС</a></li>
+    </ul>
+    <h4>Государственные порталы</h4>
+    <ul>
+      <li><a href="https://egov.kz/cms/ru/services/pass011_mvd" target="_blank">eGov — ИИН для иностранцев</a></li>
+      <li><a href="https://egov.kz/cms/ru/services/for_foreigners/00203002_mvd" target="_blank">eGov — РВП для иностранцев</a></li>
+      <li><a href="https://www.gov.kz/situations/99/intro?lang=ru" target="_blank">GOV.KZ — регистрация ТОО</a></li>
+      <li><a href="https://adilet.zan.kz/rus/docs/V1500012880" target="_blank">Правила выдачи РВП (Adilet)</a></li>
+    </ul>
+    <h4>ФНС России</h4>
+    <ul>
+      <li><a href="https://www.nalog.gov.ru/rn77/taxation/cfcomp/notif_part/" target="_blank">Уведомление КИК</a></li>
+      <li><a href="https://service.nalog.ru/disqualified.do" target="_blank">Реестр дисквалифицированных лиц</a></li>
+    </ul>
+    <h4>Банки</h4>
+    <ul>
+      <li><a href="https://kaspi.kz/kaspipay" target="_blank">Kaspi Pay</a></li>
+      <li><a href="https://www.bcc.kz/business/current-account/open-account-too/" target="_blank">BCC — счёт для ТОО</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 3: TODO LIST -->
+<!-- ============================================================ -->
+<div id="todo" class="tab-content">
+
+  <div class="todo-section">
+    <h3><span class="phase-badge">Фаза 1</span> Подготовка в России</h3>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t1">
+      <div class="todo-text">
+        <div class="todo-title">Заказать справку о несудимости</div>
+        <div class="todo-detail">Через Госуслуги или МФЦ. Срок: до 30 дней. Оформить первой!</div>
+        <div class="todo-tags"><span class="meta-tag time">до 30 дней</span><span class="meta-tag cost">Бесплатно</span></div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t2">
+      <div class="todo-text">
+        <div class="todo-title">Заказать справку из Реестра дисквалифицированных лиц (ФНС)</div>
+        <div class="todo-detail">Подтверждение отсутствия запрета на предпринимательскую деятельность. ФНС, service.nalog.ru/disqualified.do</div>
+        <div class="todo-tags"><span class="meta-tag time">5 рабочих дней</span><span class="meta-tag cost">100 руб</span></div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t3">
+      <div class="todo-text">
+        <div class="todo-title">Подготовить бизнес-план по шаблону Astana Hub (Приложение 3, XLSX)</div>
+        <div class="todo-detail">Скачать шаблон на astanahub.com/ru/registration/. 15 обязательных разделов. Ключевые: техническая архитектура (стек, API, БД), финмодель на 3 года, стратегия экспорта (обязательно!), KPI. Консервативные прогнозы выручки — лучше.</div>
+        <div class="todo-tags"><span class="meta-tag time">5-10 дней</span></div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t4">
+      <div class="todo-text">
+        <div class="todo-title">Придумать название ТОО, проверить доступность</div>
+        <div class="todo-detail">Проверить на egov.kz/cms/ru/services/passP3010_mu (моментально). Название на 3 языках (каз/рус/англ). Латиница разрешена.</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t5">
+      <div class="todo-text">
+        <div class="todo-title">Определить ОКЭД-коды</div>
+        <div class="todo-detail">Основной: 62.01 / 62.011 (разработка ПО / мобильные приложения). Доп.: 58.29 (издание ПО), 63.11 (обработка данных). С 2026 — минимум 90% дохода от приоритетных видов.</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t5a">
+      <div class="todo-text">
+        <div class="todo-title">Определиться с жильём в Астане (отель или квартира)</div>
+        <div class="todo-detail">Для РВП лучше квартира (договор аренды + согласие собственника). Отель подойдёт на первые дни. Арендодатель = принимающая сторона для e-Qonaq.</div>
+        <div class="todo-tags"><span class="meta-tag docs">Для РВП + e-Qonaq</span></div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t6">
+      <div class="todo-text">
+        <div class="todo-title">Найти юр. адрес ТОО в Астане (отдельно от жилья!)</div>
+        <div class="todo-detail">Виртуальный офис или арендованное помещение. Это адрес компании, не ваш личный. Нужен до регистрации ТОО и для Astana Hub.</div>
+        <div class="todo-tags"><span class="meta-tag cost">20 000 - 50 000 тг/мес</span></div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t7">
+      <div class="todo-text">
+        <div class="todo-title">Копии загранпаспорта (3 экз.)</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t7a">
+      <div class="todo-text">
+        <div class="todo-title">Начать искать квартиру в Астане до приезда (Krisha.kz)</div>
+        <div class="todo-detail">Фильтр «без посредников». Написать собственникам: готовы ли выступить принимающей стороной, прийти в ЦОН, подать e-Qonaq. Договориться заранее — сэкономите 1-2 дня на месте.</div>
+        <div class="todo-tags"><span class="meta-tag docs">Для РВП + e-Qonaq</span></div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t8">
+      <div class="todo-text">
+        <div class="todo-title">Купить билеты в Астану</div>
+        <div class="todo-tags"><span class="meta-tag cost">15 000 - 30 000 руб</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="todo-section">
+    <h3><span class="phase-badge">Фаза 2</span> В Астане — регистрация</h3>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t10">
+      <div class="todo-text">
+        <div class="todo-title">ЦОН / МФЦА — получить ИИН</div>
+        <div class="todo-detail">Паспорт + копия. Бесплатно, 1 день.</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t11">
+      <div class="todo-text">
+        <div class="todo-title">Получить ЭЦП</div>
+        <div class="todo-detail">Там же (ЦОН/МФЦА). Нужен ИИН + паспорт. ~1 час.</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t12a">
+      <div class="todo-text">
+        <div class="todo-title">Дактилоскопия в районном подразделении МВД</div>
+        <div class="todo-detail">Обязательна с 2024 года для РВП.</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t12b">
+      <div class="todo-text">
+        <div class="todo-title">Медицинская справка 028/у (в казахстанском мед. учреждении)</div>
+        <div class="todo-detail">Только казахстанские мед. учреждения! Для РВП.</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t12c">
+      <div class="todo-text">
+        <div class="todo-title">Уведомление e-Qonaq (принимающая сторона, в теч. 3 р.д.)</div>
+        <div class="todo-detail">Электронное уведомление о прибытии иностранца.</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t12">
+      <div class="todo-text">
+        <div class="todo-title">Подать заявление на РВП бизнес-иммигранта</div>
+        <div class="todo-detail">Принимающая сторона через egov.kz. Рассмотрение: ~1 рабочий день (обычно 2-3 часа).</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t13">
+      <div class="todo-text">
+        <div class="todo-title">Нотариус: заверить учредительные документы</div>
+        <div class="todo-detail">Устав, решение о создании. Перевод на казахский/русский.</div>
+        <div class="todo-tags"><span class="meta-tag cost">10 000 - 30 000 тг</span></div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t14">
+      <div class="todo-text">
+        <div class="todo-title">Зарегистрировать ТОО (eGov Business или ЦОН)</div>
+        <div class="todo-detail">1 рабочий день онлайн. Бесплатно для МСБ.</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t15">
+      <div class="todo-text">
+        <div class="todo-title">Открыть банковский счёт на ТОО</div>
+        <div class="todo-detail">Kaspi / BCC / Freedom. Бесплатно.</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t16">
+      <div class="todo-text">
+        <div class="todo-title">Kaspi Bank: подключить Kaspi Pay</div>
+        <div class="todo-detail">Посетить отделение. Узнать про рассрочку для граждан РК.</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t17">
+      <div class="todo-text">
+        <div class="todo-title">Уставный капитал — определить размер</div>
+        <div class="todo-detail">Для МСБ = 0 тг. Но акимат при РВП может потребовать 100 МРП (432 500 тг). Уточнить при подаче РВП.</div>
+        <div class="todo-tags"><span class="meta-tag cost">0 — 432 500 тг</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="todo-section">
+    <h3><span class="phase-badge">Фаза 3</span> Astana Hub</h3>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t20">
+      <div class="todo-text">
+        <div class="todo-title">Получить справку об отсутствии налоговой задолженности</div>
+        <div class="todo-detail">Не старше 10 дней. Долг (если есть) — не более 6 МРП (25 950 тг).</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t21">
+      <div class="todo-text">
+        <div class="todo-title">Подать заявку в Astana Hub (онлайн)</div>
+        <div class="todo-detail">registration.astanahub.com. Бизнес-план + справка + документ на адрес.</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t22">
+      <div class="todo-text">
+        <div class="todo-title">Отслеживать статус (до 15 р.д.)</div>
+        <div class="todo-detail">В личном кабинете на портале Astana Hub.</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t23">
+      <div class="todo-text">
+        <div class="todo-title">Подписать договор ЭЦП, получить сертификат</div>
+        <div class="todo-detail">Можно сделать удалённо из РФ через ЭЦП. Личное присутствие не требуется.</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t24">
+      <div class="todo-text">
+        <div class="todo-title">Найти удалённого бухгалтера в Казахстане</div>
+        <div class="todo-detail">Раздельный учёт по продуктам/ИС. Аналитика выручки по каналам. Можно вести удалённо из КЗ.</div>
+        <div class="todo-tags"><span class="meta-tag cost">25 000 - 60 000 тг/мес</span></div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t25">
+      <div class="todo-text">
+        <div class="todo-title">Уведомить ФНС России о КИК</div>
+        <div class="todo-detail">Через ЛК nalog.gov.ru. До 30 апреля 2027 г.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="todo-section">
+    <h3><span class="phase-badge transfer">Фаза 4</span> Трансфер ownership (сент-окт 2026)</h3>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t29">
+      <div class="todo-text">
+        <div class="todo-title">Получить сертификат налогового резидентства РФ (ФНС)</div>
+        <div class="todo-detail">nalog.gov.ru → «Получить справку о подтверждении статуса налогового резидента». Нужен для применения Конвенции — чтобы КЗ не удержал 20% ИПН.</div>
+        <div class="todo-tags"><span class="meta-tag docs">До сделки!</span></div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t30">
+      <div class="todo-text">
+        <div class="todo-title">Подготовить специальную доверенность на представителя</div>
+        <div class="todo-detail">Нотариус в РФ. Специальная (не генеральная!) — на продажу доли в конкретном ТОО с указанием БИН, размера доли, полномочий. Апостиль НЕ нужен (Кишинёвская конвенция). За 2-4 недели до трансфера.</div>
+        <div class="todo-tags"><span class="meta-tag cost">~5 000 - 10 000 руб</span></div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t31">
+      <div class="todo-text">
+        <div class="todo-title">Подготовить решение учредителя о передаче доли</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t32">
+      <div class="todo-text">
+        <div class="todo-title">Подготовить новый устав / учредительный договор</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t33">
+      <div class="todo-text">
+        <div class="todo-title">Согласие супругов (если в браке) — нотариальное</div>
+        <div class="todo-detail">И у продавца, и у покупателя доли.</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t34">
+      <div class="todo-text">
+        <div class="todo-title">Новый владелец: приехать в Астану</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t35">
+      <div class="todo-text">
+        <div class="todo-title">Новый владелец: получить ИИН в ЦОН</div>
+        <div class="todo-detail">Паспорт + копия. 1 рабочий день.</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t36">
+      <div class="todo-text">
+        <div class="todo-title">Новый владелец: получить РВП бизнес-иммигранта</div>
+        <div class="todo-detail">Обязательно для участия в уставном капитале!</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t37">
+      <div class="todo-text">
+        <div class="todo-title">Нотариус: оформить договор передачи доли</div>
+        <div class="todo-detail">Купля-продажа или дарение. Обязательно нотариально в Казахстане.</div>
+        <div class="todo-tags"><span class="meta-tag cost">15 000 - 40 000 тг</span></div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t38">
+      <div class="todo-text">
+        <div class="todo-title">ЦОН: перерегистрация ТОО (смена учредителя)</div>
+        <div class="todo-detail">Новый устав, решение, договор передачи.</div>
+        <div class="todo-tags"><span class="meta-tag cost">28 113 тг (6,5 МРП)</span></div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t39">
+      <div class="todo-text">
+        <div class="todo-title">Смена директора: уведомление через eGov</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t40">
+      <div class="todo-text">
+        <div class="todo-title">Новый директор: получить ЭЦП</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t41">
+      <div class="todo-text">
+        <div class="todo-title">Банк: перенастроить права (новый директор)</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t42">
+      <div class="todo-text">
+        <div class="todo-title">Astana Hub: уведомить об изменениях (10 р.д.)</div>
+        <div class="todo-detail">Смена учредителя и директора. Подтверждающие документы.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="todo-section">
+    <h3><span class="phase-badge recurring">Регулярно</span> Ежеквартальные обязательства</h3>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t50">
+      <div class="todo-text">
+        <div class="todo-title">Сбор 1% от дохода за квартал</div>
+        <div class="todo-detail">До 20-го числа первого месяца после квартала.</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t51">
+      <div class="todo-text">
+        <div class="todo-title">Квартальный отчёт о ходе проекта</div>
+        <div class="todo-detail">До 10-го числа месяца после квартала.</div>
+      </div>
+    </div>
+
+    <div class="todo-item">
+      <input type="checkbox" id="t52">
+      <div class="todo-text">
+        <div class="todo-title">Отчёт по резидентам/нерезидентам</div>
+        <div class="todo-detail">До 10-го числа месяца после квартала.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 4: TRANSFER -->
+<!-- ============================================================ -->
+<div id="transfer" class="tab-content">
+
+  <div class="info-block">
+    <h3>Трансфер ownership: сценарий</h3>
+    <ul>
+      <li><strong>Март 2026:</strong> текущий учредитель (гражданин РФ) регистрирует ТОО в Астане</li>
+      <li><strong>~Май 2026:</strong> ТОО получает статус участника Astana Hub, начинает работу</li>
+      <li><strong>Май — сентябрь:</strong> компания работает, набирает обороты</li>
+      <li><strong>Сентябрь-октябрь 2026:</strong> новый владелец (гражданин РФ) приезжает в Астану, принимает 100% доли и становится директором</li>
+    </ul>
+    <div class="highlight">
+      <strong>Ключевое:</strong> текущий владелец (продавец) может <strong>НЕ приезжать в Казахстан</strong> — всё делается через представителя по доверенности. Покупатель обязан приехать лично (для ИИН и РВП).
+    </div>
+  </div>
+
+  <div class="info-block">
+    <h3>Доверенность: что это и что в ней должно быть</h3>
+    <p>Если текущий владелец (продавец) не приезжает в Казахстан, ему нужна <strong>специальная доверенность</strong> на представителя.</p>
+
+    <h4>Тип доверенности</h4>
+    <ul>
+      <li><strong>Специальная</strong> (не генеральная!) — на конкретное действие: продажу/дарение доли в конкретном ТОО</li>
+      <li>Генеральная доверенность не подойдёт — нотариус в КЗ может отказать</li>
+    </ul>
+
+    <h4>Что обязательно указать в доверенности</h4>
+    <ul>
+      <li>ФИО доверителя (продавца), паспортные данные, ИИН</li>
+      <li>ФИО представителя, паспортные данные</li>
+      <li><strong>Наименование ТОО</strong> и <strong>БИН</strong></li>
+      <li><strong>Размер доли</strong> (100% уставного капитала)</li>
+      <li>Перечень конкретных полномочий:
+        <ul>
+          <li>Подписание договора купли-продажи / дарения доли</li>
+          <li>Представление интересов в нотариате</li>
+          <li>Представление интересов в ЦОН и государственных органах</li>
+          <li>Подача документов на перерегистрацию ТОО</li>
+          <li>Подписание нового устава</li>
+        </ul>
+      </li>
+      <li><strong>Дата выдачи</strong> — обязательна (без даты доверенность ничтожна!)</li>
+      <li><strong>Срок действия</strong> — максимум 3 года. Если не указан — 1 год</li>
+    </ul>
+
+    <h4>Оформление</h4>
+    <table class="compare-table">
+      <tr><th>Параметр</th><th>Детали</th></tr>
+      <tr><td><strong>Где оформить</strong></td><td>У любого нотариуса в России</td></tr>
+      <tr><td><strong>Нотариальное удостоверение</strong></td><td>Обязательно</td></tr>
+      <tr><td><strong>Апостиль</strong></td><td class="good"><strong>НЕ нужен!</strong> РФ и КЗ — участники Кишинёвской конвенции (взаимное признание документов без апостиля)</td></tr>
+      <tr><td><strong>Перевод</strong></td><td>Нотариальный перевод на казахский язык (сделать в КЗ)</td></tr>
+      <tr><td><strong>Стоимость</strong></td><td>~5 000 - 10 000 руб (нотариус РФ) + перевод в КЗ ~5 000 - 10 000 тг</td></tr>
+      <tr><td><strong>Кто может быть представителем</strong></td><td>Любое <strong>третье лицо</strong> — юрист, знакомый в Астане, друг. <strong class="bad">НЕ покупатель!</strong> (см. ниже)</td></tr>
+    </table>
+    <div class="warning" style="background:#fee2e2;border-left-color:#dc2626;color:#991b1b;">
+      <strong>Нельзя оформить доверенность на покупателя!</strong>
+      <p style="margin-top:8px;">Статья 163 п. 3 ГК РК: <em>«Представитель не может совершать сделки от имени представляемого в отношении себя лично»</em>.</p>
+      <ul style="margin-top:8px;">
+        <li>Покупатель <strong>не может</strong> одновременно быть представителем продавца — он заключает сделку «в отношении себя лично»</li>
+        <li>Такая сделка <strong>недействительна</strong> (ст. 163 п. 4 ГК РК)</li>
+        <li>Нотариус в Казахстане <strong>откажет</strong> в удостоверении такой сделки</li>
+      </ul>
+      <p style="margin-top:8px;"><strong>Решение:</strong> оформить доверенность на <strong>третье лицо</strong> — любой знакомый в Астане, юрист, друг. Кто угодно, кроме самого покупателя.</p>
+    </div>
+
+    <div class="warning">
+      <strong>Кишинёвская конвенция (1993):</strong> Россия и Казахстан — участники. Документы, выданные или удостоверенные нотариусом одной страны, <strong>принимаются в другой без апостиля</strong>. Это касается доверенностей, согласий супругов и других нотариальных документов. Нужен только нотариальный перевод.
+    </div>
+  </div>
+
+  <div class="info-block">
+    <h3>Пакет документов: кто что готовит</h3>
+
+    <h4>Продавец готовит (в России, за 2-4 недели до трансфера)</h4>
+    <table class="compare-table">
+      <tr><th>Документ</th><th>Где / как</th><th>Заверение</th><th>Перевод</th></tr>
+      <tr>
+        <td><strong>Специальная доверенность</strong></td>
+        <td>Нотариус в РФ</td>
+        <td>Нотариальное удостоверение. Апостиль НЕ нужен</td>
+        <td>Нотариальный перевод на каз. — в КЗ</td>
+      </tr>
+      <tr>
+        <td><strong>Согласие супруга на продажу доли</strong></td>
+        <td>Нотариус в РФ (если в браке)</td>
+        <td>Нотариальное. Апостиль НЕ нужен</td>
+        <td>Перевод в КЗ (если потребуют)</td>
+      </tr>
+      <tr>
+        <td><strong>Заявление о неженатости</strong></td>
+        <td>Нотариус в РФ (если не в браке)</td>
+        <td>Нотариальное</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><strong>Решение единственного участника</strong></td>
+        <td>Составляется продавцом</td>
+        <td>Подпись продавца</td>
+        <td>На русском — перевод обычно не нужен</td>
+      </tr>
+      <tr>
+        <td><strong>Оригиналы учредительных документов ТОО</strong></td>
+        <td>Устав, решение о создании</td>
+        <td>—</td>
+        <td>Переслать представителю в КЗ</td>
+      </tr>
+      <tr>
+        <td><strong>Печать ТОО</strong></td>
+        <td>—</td>
+        <td>—</td>
+        <td>Передать представителю / покупателю</td>
+      </tr>
+    </table>
+
+    <h4>Покупатель готовит (лично в Казахстане)</h4>
+    <table class="compare-table">
+      <tr><th>Документ</th><th>Где / как</th><th>Примечание</th></tr>
+      <tr>
+        <td><strong>ИИН</strong></td>
+        <td>ЦОН в Астане, лично</td>
+        <td>1 рабочий день, бесплатно</td>
+      </tr>
+      <tr>
+        <td><strong>РВП бизнес-иммигранта</strong></td>
+        <td>ЦОН / eGov, лично</td>
+        <td>Обязательно с 2024 для вхождения в учредители!</td>
+      </tr>
+      <tr>
+        <td><strong>Справка о несудимости</strong></td>
+        <td>Госуслуги / МФЦ в России (заказать заранее!)</td>
+        <td>До 30 дней на изготовление</td>
+      </tr>
+      <tr>
+        <td><strong>Согласие супруга на покупку доли</strong></td>
+        <td>Нотариус в РФ или КЗ</td>
+        <td>Если в браке</td>
+      </tr>
+      <tr>
+        <td><strong>Загранпаспорт</strong></td>
+        <td>—</td>
+        <td>Срок действия > срока РВП</td>
+      </tr>
+    </table>
+
+    <h4>Совместно (у нотариуса в Казахстане)</h4>
+    <table class="compare-table">
+      <tr><th>Документ</th><th>Кто подписывает</th><th>Примечание</th></tr>
+      <tr>
+        <td><strong>Договор купли-продажи / дарения доли</strong></td>
+        <td>Представитель продавца (по доверенности) + покупатель лично</td>
+        <td>Составляет нотариус. Стоимость: ~12 МРП (~47 184 тг)</td>
+      </tr>
+      <tr>
+        <td><strong>Новый Устав ТОО</strong> (3 экземпляра)</td>
+        <td>Новый единственный участник</td>
+        <td>С данными нового учредителя</td>
+      </tr>
+      <tr>
+        <td><strong>Решение нового единственного участника</strong></td>
+        <td>Покупатель</td>
+        <td>О принятии доли, назначении себя директором</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="info-block">
+    <h3>Согласие супругов: когда нужно и когда нет</h3>
+    <table class="compare-table">
+      <tr><th></th><th>Продавец</th><th>Покупатель</th></tr>
+      <tr>
+        <td><strong>Нужно, если</strong></td>
+        <td>В браке + доля приобретена в период брака</td>
+        <td>В браке (покупка = совместные средства)</td>
+      </tr>
+      <tr>
+        <td><strong>НЕ нужно, если</strong></td>
+        <td>Не в браке, доля получена до брака / в дар / по наследству, есть брачный договор</td>
+        <td>Не в браке, есть брачный договор</td>
+      </tr>
+      <tr>
+        <td><strong>Форма</strong></td>
+        <td colspan="2" style="text-align:center;">Нотариально удостоверенное письменное согласие</td>
+      </tr>
+      <tr>
+        <td><strong>Из РФ</strong></td>
+        <td colspan="2" style="text-align:center;">Апостиль <strong>НЕ нужен</strong> (Кишинёвская конвенция). Только нотариальный перевод</td>
+      </tr>
+    </table>
+    <div class="warning">
+      <strong>Без согласия</strong> сделка может быть оспорена супругом в течение <strong>1-3 лет</strong> с момента, когда узнал о сделке. Лучше оформить заранее!
+    </div>
+  </div>
+
+  <div class="info-block">
+    <h3>Нотариальная процедура в Казахстане</h3>
+    <ul>
+      <li><strong>Обязательность:</strong> нотариальное удостоверение договора передачи доли — обязательно (ст. 28-1 Закона РК «О ТОО»)</li>
+      <li><strong>Обе стороны могут действовать по доверенности</strong> — продавец не обязан приезжать</li>
+      <li><strong>При 100% доле единственного участника:</strong> уведомление о преимущественном праве покупки НЕ требуется</li>
+    </ul>
+
+    <h4>Что проверяет нотариус</h4>
+    <ul>
+      <li>Личности сторон (или полномочия представителей по доверенности)</li>
+      <li>Данные ТОО через ЕНИС (Единая нотариальная информационная система)</li>
+      <li>Наличие согласий супругов</li>
+      <li>Учредительные документы ТОО (устав, решение)</li>
+      <li>Решение участника о продаже/дарении доли</li>
+    </ul>
+
+    <h4>Стоимость нотариуса</h4>
+    <table class="compare-table">
+      <tr><th>Услуга</th><th>Стоимость</th></tr>
+      <tr><td>Удостоверение договора передачи доли (физлица-неродственники)</td><td><strong>~12 МРП (~51 900 тг / ~9 400 руб)</strong></td></tr>
+      <tr><td>Удостоверение нового устава</td><td>~3-5 МРП (~13 000 - 21 600 тг)</td></tr>
+      <tr><td>Нотариальный перевод документов из РФ</td><td>~5 000 - 10 000 тг за документ</td></tr>
+    </table>
+  </div>
+
+  <div class="info-block">
+    <h3>Перерегистрация ТОО (ЦОН / eGov)</h3>
+    <p>После нотариального оформления сделки нужно перерегистрировать ТОО в течение <strong>1 месяца</strong>.</p>
+
+    <table class="compare-table">
+      <tr><th>Параметр</th><th>Детали</th></tr>
+      <tr><td><strong>Куда подавать</strong></td><td>ЦОН (лично) или eGov.kz (онлайн, нужна ЭЦП)</td></tr>
+      <tr><td><strong>Срок обработки</strong></td><td><strong>1 рабочий день</strong></td></tr>
+      <tr><td><strong>Госпошлина</strong></td><td><strong>6,5 МРП = ~28 113 тг (~5 100 руб)</strong></td></tr>
+    </table>
+
+    <h4>Документы для перерегистрации</h4>
+    <ul>
+      <li>Заявление на перерегистрацию</li>
+      <li>Решение нового единственного участника</li>
+      <li>Новый Устав ТОО (3 экземпляра)</li>
+      <li>Оригинал старого Устава</li>
+      <li>Нотариально удостоверенный договор купли-продажи / дарения</li>
+      <li>Квитанция об оплате госпошлины (6,5 МРП)</li>
+    </ul>
+  </div>
+
+  <div class="info-block">
+    <h3>Процедура трансфера пошагово</h3>
+
+    <h4>Продавец в России (за 2-4 недели до трансфера)</h4>
+    <ul>
+      <li>Оформить специальную доверенность у нотариуса</li>
+      <li>Оформить согласие супруга (если в браке)</li>
+      <li>Составить решение о продаже 100% доли</li>
+      <li>Переслать оригиналы учредительных документов + печать ТОО в Казахстан</li>
+      <li>Получить сертификат налогового резидентства РФ в ФНС (для применения Конвенции)</li>
+    </ul>
+
+    <h4>Покупатель в Астане</h4>
+    <table class="compare-table">
+      <tr><th>Шаг</th><th>Действие</th><th>Срок</th></tr>
+      <tr><td>1</td><td><strong>Получить ИИН</strong> — ЦОН, паспорт + копия</td><td>1 рабочий день</td></tr>
+      <tr><td>2</td><td><strong>Получить РВП бизнес-иммигранта</strong> — обязательно для вхождения в учредители!</td><td>до 5 р.д.</td></tr>
+      <tr><td>3</td><td><strong>Нотариус</strong> — представитель продавца + покупатель подписывают договор</td><td>1 день</td></tr>
+      <tr><td>4</td><td><strong>ЦОН / eGov</strong> — подача на перерегистрацию ТОО</td><td>1 рабочий день</td></tr>
+      <tr><td>5</td><td><strong>Смена директора</strong> — уведомление через eGov</td><td>1 день</td></tr>
+      <tr><td>6</td><td><strong>Получить ЭЦП</strong> на нового директора (ЦОН)</td><td>~1 час</td></tr>
+      <tr><td>7</td><td><strong>Банк</strong> — переоформить права доступа на нового директора</td><td>1-2 дня</td></tr>
+      <tr><td>8</td><td><strong>Astana Hub</strong> — уведомить об изменениях</td><td>в течение 10 р.д.</td></tr>
+    </table>
+    <p style="margin-top:12px;color:#64748b;font-size:0.88rem;"><strong>Итого на трансфер:</strong> ~7-10 рабочих дней с момента приезда нового владельца</p>
+  </div>
+
+  <div class="info-block">
+    <h3>Способы передачи доли: сравнение</h3>
+    <table class="compare-table">
+      <tr><th></th><th>Продажа (купля-продажа)</th><th>Дарение</th></tr>
+      <tr>
+        <td><strong>Суть</strong></td>
+        <td>Возмездная передача доли по договорной цене</td>
+        <td>Безвозмездная передача доли</td>
+      </tr>
+      <tr>
+        <td><strong>Оформление</strong></td>
+        <td>Нотариальный договор купли-продажи в КЗ</td>
+        <td>Нотариальный договор дарения в КЗ</td>
+      </tr>
+      <tr>
+        <td><strong class="good">Плюсы</strong></td>
+        <td class="good">Прозрачная сделка, чёткая цена, минимум вопросов от налоговых органов</td>
+        <td class="good">Нет расходов на покупку, проще если между близкими</td>
+      </tr>
+      <tr>
+        <td><strong class="bad">Минусы</strong></td>
+        <td class="bad">Налог на прирост стоимости, нужно обосновать цену</td>
+        <td class="bad">Может вызвать вопросы налоговых органов, риск доначислений</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="info-block">
+    <h3>Налоги при передаче доли</h3>
+
+    <h4>Конвенция об избежании двойного налогообложения (РФ — КЗ, 1996)</h4>
+    <div class="highlight">
+      <strong>Ключевое:</strong> по ст. 13 Конвенции, доходы от продажи долей в компании (не недропользователь, активы не из недвижимости) облагаются <strong>только в государстве резидентства продавца</strong> — то есть <strong>в России</strong>. Казахстан НЕ имеет права облагать эту сделку, если предоставить сертификат резидентства.
+    </div>
+
+    <table class="compare-table">
+      <tr><th></th><th>Продажа</th><th>Дарение</th></tr>
+      <tr>
+        <td><strong>Налог в КЗ (продавец)</strong></td>
+        <td>По Конвенции — <strong>0%</strong> при наличии сертификата резидентства РФ. Без сертификата: ИПН 20% от прироста стоимости</td>
+        <td>Нет</td>
+      </tr>
+      <tr>
+        <td><strong>НДФЛ в РФ (продавец)</strong></td>
+        <td>13-22% от дохода (прогрессивная шкала с 2025). Льгота: при владении 5+ лет и продаже &lt; 50 млн руб — возможно освобождение</td>
+        <td>Нет дохода — нет НДФЛ</td>
+      </tr>
+      <tr>
+        <td><strong>Налог на получателя (КЗ)</strong></td>
+        <td>Нет</td>
+        <td>Возможен ИПН на безвозмездно полученное имущество (уточнить)</td>
+      </tr>
+      <tr>
+        <td><strong>Зачёт налога</strong></td>
+        <td colspan="2">Если КЗ всё же удержит ИПН — уплаченный налог <strong>зачитывается</strong> при подаче 3-НДФЛ в России (ст. 23 Конвенции)</td>
+      </tr>
+    </table>
+
+    <div class="warning">
+      <strong>Сертификат налогового резидентства РФ</strong> — получить в ФНС России <strong>заблаговременно</strong> (до сделки). Без него Казахстан может удержать 20% ИПН. Подать заявление на nalog.gov.ru → «Получить справку о подтверждении статуса налогового резидента».
+    </div>
+  </div>
+
+  <div class="info-block">
+    <h3>Сохранение статуса Astana Hub при смене владельца</h3>
+    <ul>
+      <li>По договору с Astana Hub: уведомить об изменениях (адрес, реквизиты, учредители) <strong>в течение 10 рабочих дней</strong></li>
+      <li>Предоставить подтверждающие документы</li>
+      <li>Статус участника привязан к юрлицу (ТОО), а не к физлицу — <strong>при смене учредителя статус сохраняется</strong></li>
+      <li>Основания для отзыва: нарушение условий договора, прекращение деятельности — не смена учредителя</li>
+    </ul>
+    <div class="highlight">
+      <strong>Ключевое:</strong> статус Astana Hub привязан к БИН компании. Смена учредителя не является основанием для отзыва статуса, если вовремя уведомить и продолжать соблюдать условия договора.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 5: BUDGET -->
+<!-- ============================================================ -->
+<div id="budget" class="tab-content">
+
+  <div class="info-block">
+    <h3>Смета: полный цикл (регистрация + трансфер)</h3>
+    <p style="color:#64748b;font-size:0.88rem;">Курс: 1 USD ~ 510 тг, 1 RUB ~ 5.5 тг (март 2026). Всё делается самостоятельно, без консультантов.</p>
+  </div>
+
+  <div class="info-block" style="overflow-x:auto;">
+    <h3>Фаза 1-3: Регистрация и Astana Hub</h3>
+    <table class="budget-table">
+      <thead><tr><th>Статья</th><th>Тг</th><th>~Руб</th><th>Примечание</th></tr></thead>
+      <tbody>
+        <tr class="section-row"><td colspan="4">Поездка в Астану</td></tr>
+        <tr><td>Авиабилеты (туда-обратно)</td><td>82 500 - 165 000</td><td>15 000 - 30 000</td><td>Москва — Астана</td></tr>
+        <tr><td>Проживание</td><td>от 13 750/ночь</td><td>от 2 500/ночь</td><td>Отель / апартаменты</td></tr>
+        <tr><td>Транспорт, питание</td><td>~3 000/день</td><td>~550/день</td><td></td></tr>
+
+        <tr class="section-row"><td colspan="4">Документы</td></tr>
+        <tr><td>Справка о несудимости</td><td>—</td><td>Бесплатно</td><td>Госуслуги</td></tr>
+        <tr><td>Справка из реестра дисквалифицированных лиц</td><td>—</td><td>100</td><td>ФНС, 5 р.д.</td></tr>
+        <tr><td>ИИН</td><td>Бесплатно</td><td>—</td><td></td></tr>
+        <tr><td>ЭЦП</td><td>Бесплатно</td><td>—</td><td></td></tr>
+
+        <tr class="section-row"><td colspan="4">Регистрация ТОО</td></tr>
+        <tr><td>Регистрация (eGov, МСБ)</td><td>Бесплатно</td><td>—</td><td></td></tr>
+        <tr><td>Нотариус (заверение, перевод)</td><td>10 000 - 30 000</td><td>1 800 - 5 500</td><td></td></tr>
+        <tr><td>Уставный капитал</td><td>0 — 432 500</td><td>0 — ~78 600</td><td>МСБ = 0. Если акимат потребует для РВП: 100 МРП. Остаётся на счёте.</td></tr>
+        <tr><td>Юр. адрес (первый месяц)</td><td>20 000 - 50 000</td><td>3 600 - 9 100</td><td></td></tr>
+
+        <tr class="section-row"><td colspan="4">Банк</td></tr>
+        <tr><td>Открытие счёта</td><td>Бесплатно</td><td>—</td><td></td></tr>
+        <tr><td>Kaspi Pay</td><td>Бесплатно</td><td>—</td><td></td></tr>
+
+        <tr class="total-row">
+          <td><strong>ИТОГО Фаза 1-3</strong></td>
+          <td><strong>~560 000 - 680 000</strong></td>
+          <td><strong>~100 000 - 125 000</strong></td>
+          <td>+ авиа/проживание</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-block" style="overflow-x:auto;">
+    <h3>Фаза 4: Трансфер ownership (сент-окт 2026)</h3>
+    <table class="budget-table">
+      <thead><tr><th>Статья</th><th>Тг</th><th>~Руб</th><th>Примечание</th></tr></thead>
+      <tbody>
+        <tr><td>Авиабилеты нового владельца</td><td>82 500 - 165 000</td><td>15 000 - 30 000</td><td></td></tr>
+        <tr><td>Проживание нового владельца</td><td>от 13 750/ночь</td><td>от 2 500/ночь</td><td>~7-10 дней</td></tr>
+        <tr><td>Доверенность (нотариус РФ, апостиль НЕ нужен)</td><td>—</td><td>5 000 - 10 000</td><td>Специальная, на конкретное ТОО</td></tr>
+        <tr><td>Сертификат налогового резидентства РФ (ФНС)</td><td>—</td><td>Бесплатно</td><td>Для применения Конвенции</td></tr>
+        <tr><td>Нотариус КЗ (договор передачи доли)</td><td>15 000 - 40 000</td><td>2 700 - 7 300</td><td></td></tr>
+        <tr><td>Перерегистрация ТОО (пошлина)</td><td><strong>28 113</strong></td><td>~5 100</td><td>6,5 МРП</td></tr>
+        <tr><td>ИИН + ЭЦП нового владельца</td><td>Бесплатно</td><td>—</td><td></td></tr>
+        <tr><td>Перевод/апостиль документов</td><td>5 000 - 15 000</td><td>900 - 2 700</td><td></td></tr>
+
+        <tr class="total-row">
+          <td><strong>ИТОГО Трансфер</strong></td>
+          <td><strong>~145 000 - 250 000</strong></td>
+          <td><strong>~26 000 - 45 000</strong></td>
+          <td>+ авиа/проживание</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-block" style="overflow-x:auto;">
+    <h3>Регулярные расходы (после регистрации)</h3>
+    <table class="budget-table">
+      <thead><tr><th>Статья</th><th>Период</th><th>Тг</th><th>Примечание</th></tr></thead>
+      <tbody>
+        <tr><td>Юр. адрес</td><td>Ежемесячно</td><td>20 000 - 50 000</td><td></td></tr>
+        <tr><td>Бухгалтер</td><td>Ежемесячно</td><td>25 000 - 60 000</td><td></td></tr>
+        <tr><td>Сбор Astana Hub</td><td>Ежеквартально</td><td>1% от дохода</td><td></td></tr>
+        <tr><td>Банк</td><td>Ежемесячно</td><td>0 - 5 000</td><td></td></tr>
+        <tr><td>Kaspi Рассрочка</td><td>С каждой продажи</td><td>12-15%</td><td>Только рассрочка</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warning">
+    <strong>Уставный капитал:</strong> для МСБ минимум = 0 тг. Требование 100 МРП (432 500 тг) может предъявляться акиматом при оформлении РВП бизнес-иммигранта — уточняйте. В любом случае это не расход, а вложение в ТОО (деньги остаются на счёте компании).
+  </div>
+</div>
+
+</div><!-- /.container -->
+
+<script>
+function switchTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+document.querySelectorAll('.todo-item input[type="checkbox"]').forEach(cb => {
+  const key = 'kz-todo-' + cb.id;
+  cb.checked = localStorage.getItem(key) === 'true';
+  cb.addEventListener('change', () => {
+    localStorage.setItem(key, cb.checked);
+    cb.closest('.todo-item').style.opacity = cb.checked ? '0.5' : '1';
+  });
+  if (cb.checked) cb.closest('.todo-item').style.opacity = '0.5';
+});
+</script>
+</body>
+</html>
