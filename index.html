@@ -70,8 +70,8 @@
   /* ===== Gantt Chart ===== */
   .gantt-wrapper { overflow-x: auto; margin-bottom: 24px; }
   .gantt {
-    display: grid; grid-template-columns: 220px repeat(32, 28px);
-    gap: 0; font-size: 0.78rem; min-width: 1100px;
+    display: grid; grid-template-columns: 220px repeat(13, 36px) repeat(7, 50px);
+    gap: 0; font-size: 0.78rem; min-width: 1070px;
   }
   .gantt-header {
     background: #f1f5f9; font-weight: 600; padding: 8px 10px;
@@ -197,144 +197,141 @@
 
   <div class="info-block">
     <h3>Диаграмма Ганта: март — октябрь 2026</h3>
-    <p style="color:#64748b;font-size:0.88rem;margin-bottom:16px;">Горизонтальная ось — недели. Каждая задача показана полоской с реальной длительностью. Прокрутите вправо для полного обзора.</p>
+    <p style="color:#64748b;font-size:0.88rem;margin-bottom:8px;">Вылет из Москвы: <strong>12 марта, 23:30</strong>. Прилёт в Астану: <strong>13 марта</strong>. Левая часть — дни в Астане, правая — месяцы (удалённо из РФ).</p>
 
     <div class="gantt-wrapper">
       <div class="gantt">
-        <!-- Header row -->
+        <!-- Header row 1: months -->
         <div class="gantt-header label">Задача</div>
-        <div class="gantt-header gantt-month-span" style="grid-column: span 4;">Март</div>
-        <div class="gantt-header gantt-month-span" style="grid-column: span 4;">Апрель</div>
-        <div class="gantt-header gantt-month-span" style="grid-column: span 5;">Май</div>
-        <div class="gantt-header gantt-month-span" style="grid-column: span 4;">Июнь</div>
-        <div class="gantt-header gantt-month-span" style="grid-column: span 4;">Июль</div>
-        <div class="gantt-header gantt-month-span" style="grid-column: span 5;">Авг</div>
-        <div class="gantt-header gantt-month-span" style="grid-column: span 4;">Сент</div>
-        <div class="gantt-header gantt-month-span" style="grid-column: span 2;">Окт</div>
+        <div class="gantt-header gantt-month-span" style="grid-column: span 13;">Март 2026 (дни в Астане)</div>
+        <div class="gantt-header gantt-month-span">Апр</div>
+        <div class="gantt-header gantt-month-span">Май</div>
+        <div class="gantt-header gantt-month-span">Июн</div>
+        <div class="gantt-header gantt-month-span">Июл</div>
+        <div class="gantt-header gantt-month-span">Авг</div>
+        <div class="gantt-header gantt-month-span">Сен</div>
+        <div class="gantt-header gantt-month-span">Окт</div>
 
-        <!-- Week sub-headers -->
-        <div class="gantt-header label" style="font-size:0.7rem;color:#94a3b8;">Неделя</div>
-        <div class="gantt-header" style="font-size:0.7rem;">1</div>
-        <div class="gantt-header" style="font-size:0.7rem;">2</div>
-        <div class="gantt-header" style="font-size:0.7rem;">3</div>
-        <div class="gantt-header" style="font-size:0.7rem;">4</div>
-        <div class="gantt-header" style="font-size:0.7rem;">5</div>
-        <div class="gantt-header" style="font-size:0.7rem;">6</div>
-        <div class="gantt-header" style="font-size:0.7rem;">7</div>
-        <div class="gantt-header" style="font-size:0.7rem;">8</div>
-        <div class="gantt-header" style="font-size:0.7rem;">9</div>
-        <div class="gantt-header" style="font-size:0.7rem;">10</div>
-        <div class="gantt-header" style="font-size:0.7rem;">11</div>
-        <div class="gantt-header" style="font-size:0.7rem;">12</div>
-        <div class="gantt-header" style="font-size:0.7rem;">13</div>
-        <div class="gantt-header" style="font-size:0.7rem;">14</div>
-        <div class="gantt-header" style="font-size:0.7rem;">15</div>
-        <div class="gantt-header" style="font-size:0.7rem;">16</div>
-        <div class="gantt-header" style="font-size:0.7rem;">17</div>
-        <div class="gantt-header" style="font-size:0.7rem;">18</div>
-        <div class="gantt-header" style="font-size:0.7rem;">19</div>
-        <div class="gantt-header" style="font-size:0.7rem;">20</div>
-        <div class="gantt-header" style="font-size:0.7rem;">21</div>
-        <div class="gantt-header" style="font-size:0.7rem;">22</div>
-        <div class="gantt-header" style="font-size:0.7rem;">23</div>
-        <div class="gantt-header" style="font-size:0.7rem;">24</div>
-        <div class="gantt-header" style="font-size:0.7rem;">25</div>
-        <div class="gantt-header" style="font-size:0.7rem;">26</div>
-        <div class="gantt-header" style="font-size:0.7rem;">27</div>
-        <div class="gantt-header" style="font-size:0.7rem;">28</div>
-        <div class="gantt-header" style="font-size:0.7rem;">29</div>
-        <div class="gantt-header" style="font-size:0.7rem;">30</div>
-        <div class="gantt-header" style="font-size:0.7rem;">31</div>
-        <div class="gantt-header" style="font-size:0.7rem;">32</div>
+        <!-- Header row 2: day numbers -->
+        <div class="gantt-header label" style="font-size:0.68rem;color:#94a3b8;">Дата</div>
+        <div class="gantt-header" style="font-size:0.68rem;" title="Пятница">13<br><span style="color:#94a3b8;">пт</span></div>
+        <div class="gantt-header" style="font-size:0.68rem;background:#e8e0f0;" title="Суббота">14<br><span style="color:#8b5cf6;">сб</span></div>
+        <div class="gantt-header" style="font-size:0.68rem;background:#e8e0f0;" title="Воскресенье">15<br><span style="color:#8b5cf6;">вс</span></div>
+        <div class="gantt-header" style="font-size:0.68rem;" title="Понедельник">16<br><span style="color:#94a3b8;">пн</span></div>
+        <div class="gantt-header" style="font-size:0.68rem;" title="Вторник">17<br><span style="color:#94a3b8;">вт</span></div>
+        <div class="gantt-header" style="font-size:0.68rem;" title="Среда">18<br><span style="color:#94a3b8;">ср</span></div>
+        <div class="gantt-header" style="font-size:0.68rem;" title="Четверг">19<br><span style="color:#94a3b8;">чт</span></div>
+        <div class="gantt-header" style="font-size:0.68rem;" title="Пятница">20<br><span style="color:#94a3b8;">пт</span></div>
+        <div class="gantt-header" style="font-size:0.68rem;background:#e8e0f0;" title="Суббота">21<br><span style="color:#8b5cf6;">сб</span></div>
+        <div class="gantt-header" style="font-size:0.68rem;background:#e8e0f0;" title="Воскресенье">22<br><span style="color:#8b5cf6;">вс</span></div>
+        <div class="gantt-header" style="font-size:0.68rem;" title="Понедельник">23<br><span style="color:#94a3b8;">пн</span></div>
+        <div class="gantt-header" style="font-size:0.68rem;" title="Вторник">24<br><span style="color:#94a3b8;">вт</span></div>
+        <div class="gantt-header" style="font-size:0.68rem;" title="Среда">25<br><span style="color:#94a3b8;">ср</span></div>
+        <div class="gantt-header" style="font-size:0.68rem;color:#94a3b8;" title="Апрель">—</div>
+        <div class="gantt-header" style="font-size:0.68rem;color:#94a3b8;" title="Май">—</div>
+        <div class="gantt-header" style="font-size:0.68rem;color:#94a3b8;" title="Июнь">—</div>
+        <div class="gantt-header" style="font-size:0.68rem;color:#94a3b8;" title="Июль">—</div>
+        <div class="gantt-header" style="font-size:0.68rem;color:#94a3b8;" title="Август">—</div>
+        <div class="gantt-header" style="font-size:0.68rem;color:#94a3b8;" title="Сентябрь">—</div>
+        <div class="gantt-header" style="font-size:0.68rem;color:#94a3b8;" title="Октябрь">—</div>
 
-        <!-- Row 1: Подготовка документов в РФ -->
-        <div class="gantt-row-label">Подготовка документов (РФ)</div>
-        <div class="gantt-cell" style="grid-column: span 3;"><div class="gantt-bar bar-prep" style="left:0;right:0;">2-3 нед</div></div>
-        <div class="gantt-cell" style="grid-column: span 29;"></div>
+        <!-- Row 1: Прилёт + отель + e-Qonaq -->
+        <div class="gantt-row-label">Прилёт + отель + e-Qonaq</div>
+        <div class="gantt-cell" style="grid-column: span 1;"><div class="gantt-bar bar-astana" style="left:0;right:0;">13</div></div>
+        <div class="gantt-cell" style="grid-column: span 19;"></div>
 
-        <!-- Row 2: Прилёт в Астану -->
-        <div class="gantt-row-label">Прилёт в Астану</div>
+        <!-- Row 2: Поиск квартиры -->
+        <div class="gantt-row-label">Поиск квартиры (Krisha.kz)</div>
+        <div class="gantt-cell" style="grid-column: span 3;"><div class="gantt-bar bar-astana" style="left:0;right:0;">13-15</div></div>
+        <div class="gantt-cell" style="grid-column: span 17;"></div>
+
+        <!-- Row 3: ИИН + ЭЦП + дактилоскопия -->
+        <div class="gantt-row-label">ИИН + ЭЦП (ЦОН)</div>
         <div class="gantt-cell" style="grid-column: span 3;"></div>
-        <div class="gantt-cell"><div class="gantt-bar bar-astana" style="left:0;right:0;"></div></div>
-        <div class="gantt-cell" style="grid-column: span 28;"></div>
+        <div class="gantt-cell" style="grid-column: span 1;"><div class="gantt-bar bar-astana" style="left:0;right:0;">16</div></div>
+        <div class="gantt-cell" style="grid-column: span 16;"></div>
 
-        <!-- Row 3: ИИН + ЭЦП + РВП -->
-        <div class="gantt-row-label">ИИН + ЭЦП + подача РВП</div>
+        <!-- Row 4: Мед. справка -->
+        <div class="gantt-row-label">Мед. справка 028/у</div>
         <div class="gantt-cell" style="grid-column: span 3;"></div>
-        <div class="gantt-cell" style="grid-column: span 2;"><div class="gantt-bar bar-astana" style="left:0;right:0;">1-5 дн</div></div>
-        <div class="gantt-cell" style="grid-column: span 27;"></div>
+        <div class="gantt-cell" style="grid-column: span 2;"><div class="gantt-bar bar-astana" style="left:0;right:0;">16-17</div></div>
+        <div class="gantt-cell" style="grid-column: span 15;"></div>
 
-        <!-- Row 4: Регистрация ТОО -->
-        <div class="gantt-row-label">Регистрация ТОО</div>
+        <!-- Row 5: Подача РВП -->
+        <div class="gantt-row-label">Подача РВП</div>
         <div class="gantt-cell" style="grid-column: span 4;"></div>
-        <div class="gantt-cell" style="grid-column: span 1;"><div class="gantt-bar bar-astana" style="left:0;right:0;">1д</div></div>
-        <div class="gantt-cell" style="grid-column: span 27;"></div>
+        <div class="gantt-cell" style="grid-column: span 2;"><div class="gantt-bar bar-astana" style="left:0;right:0;">17-18</div></div>
+        <div class="gantt-cell" style="grid-column: span 14;"></div>
 
-        <!-- Row 5: Открытие банковского счёта -->
+        <!-- Row 6: Регистрация ТОО -->
+        <div class="gantt-row-label">Регистрация ТОО (eGov)</div>
+        <div class="gantt-cell" style="grid-column: span 5;"></div>
+        <div class="gantt-cell" style="grid-column: span 2;"><div class="gantt-bar bar-astana" style="left:0;right:0;">18-19</div></div>
+        <div class="gantt-cell" style="grid-column: span 13;"></div>
+
+        <!-- Row 7: Банковский счёт -->
         <div class="gantt-row-label">Банковский счёт + Kaspi Pay</div>
-        <div class="gantt-cell" style="grid-column: span 5;"></div>
-        <div class="gantt-cell" style="grid-column: span 1;"><div class="gantt-bar bar-astana" style="left:0;right:0;">1д</div></div>
-        <div class="gantt-cell" style="grid-column: span 26;"></div>
-
-        <!-- Row 6: Возврат в РФ -->
-        <div class="gantt-row-label" style="color:#8b5cf6;font-weight:600;">Возврат в РФ</div>
-        <div class="gantt-cell" style="grid-column: span 5;"></div>
-        <div class="gantt-cell" style="grid-column: span 1;"><div class="gantt-bar bar-prep" style="left:4px;right:4px;font-size:0.9rem;">&#9670;</div></div>
-        <div class="gantt-cell" style="grid-column: span 26;"></div>
-
-        <!-- Row 7: Подготовка пакета Astana Hub -->
-        <div class="gantt-row-label">Пакет документов Astana Hub</div>
-        <div class="gantt-cell" style="grid-column: span 5;"></div>
-        <div class="gantt-cell" style="grid-column: span 2;"><div class="gantt-bar bar-hub" style="left:0;right:0;">1-2 нед</div></div>
-        <div class="gantt-cell" style="grid-column: span 25;"></div>
-
-        <!-- Row 7: Подача заявки в Astana Hub -->
-        <div class="gantt-row-label">Заявка в Astana Hub</div>
-        <div class="gantt-cell" style="grid-column: span 7;"></div>
-        <div class="gantt-cell" style="grid-column: span 1;"><div class="gantt-bar bar-hub" style="left:0;right:0;"></div></div>
-        <div class="gantt-cell" style="grid-column: span 24;"></div>
-
-        <!-- Row 8: Рассмотрение заявки -->
-        <div class="gantt-row-label">Рассмотрение (до 15 р.д.)</div>
-        <div class="gantt-cell" style="grid-column: span 7;"></div>
-        <div class="gantt-cell" style="grid-column: span 4;"><div class="gantt-bar bar-wait" style="left:0;right:0;">~3 нед</div></div>
-        <div class="gantt-cell" style="grid-column: span 21;"></div>
-
-        <!-- Row 9: Получение статуса Astana Hub -->
-        <div class="gantt-row-label" style="color:#059669;font-weight:600;">Статус Astana Hub</div>
-        <div class="gantt-cell" style="grid-column: span 10;"></div>
-        <div class="gantt-cell" style="grid-column: span 1;"><div class="gantt-bar bar-hub" style="left:4px;right:4px;font-size:0.9rem;">&#9670;</div></div>
-        <div class="gantt-cell" style="grid-column: span 21;"></div>
-
-        <!-- Row 10: Операционная деятельность -->
-        <div class="gantt-row-label">Операционная деятельность</div>
-        <div class="gantt-cell" style="grid-column: span 11;"></div>
-        <div class="gantt-cell" style="grid-column: span 17;"><div class="gantt-bar bar-hub" style="left:0;right:0;opacity:0.5;">май — сент</div></div>
-        <div class="gantt-cell" style="grid-column: span 4;"></div>
-
-        <!-- Row 11: Kaspi Рассрочка (20 дн) -->
-        <div class="gantt-row-label">Kaspi Рассрочка (20+ дней)</div>
         <div class="gantt-cell" style="grid-column: span 6;"></div>
-        <div class="gantt-cell" style="grid-column: span 3;"><div class="gantt-bar bar-wait" style="left:0;right:0;">20 дн</div></div>
-        <div class="gantt-cell" style="grid-column: span 23;"></div>
+        <div class="gantt-cell" style="grid-column: span 2;"><div class="gantt-bar bar-astana" style="left:0;right:0;">19-20</div></div>
+        <div class="gantt-cell" style="grid-column: span 12;"></div>
 
-        <!-- Row 12: Подготовка трансфера -->
-        <div class="gantt-row-label">Подготовка трансфера доли</div>
-        <div class="gantt-cell" style="grid-column: span 24;"></div>
-        <div class="gantt-cell" style="grid-column: span 3;"><div class="gantt-bar bar-transfer" style="left:0;right:0;opacity:0.6;">док-ты</div></div>
+        <!-- Row 8: Пакет документов Astana Hub -->
+        <div class="gantt-row-label">Пакет документов Astana Hub</div>
+        <div class="gantt-cell" style="grid-column: span 7;"></div>
+        <div class="gantt-cell" style="grid-column: span 4;"><div class="gantt-bar bar-hub" style="left:0;right:0;">20-23</div></div>
+        <div class="gantt-cell" style="grid-column: span 9;"></div>
+
+        <!-- Row 9: Подача заявки Astana Hub -->
+        <div class="gantt-row-label">Подача заявки Astana Hub</div>
+        <div class="gantt-cell" style="grid-column: span 10;"></div>
+        <div class="gantt-cell" style="grid-column: span 2;"><div class="gantt-bar bar-hub" style="left:0;right:0;">23-24</div></div>
+        <div class="gantt-cell" style="grid-column: span 8;"></div>
+
+        <!-- Row 10: Возврат в РФ (TBD) -->
+        <div class="gantt-row-label" style="color:#8b5cf6;font-weight:600;">Возврат в РФ</div>
+        <div class="gantt-cell" style="grid-column: span 12;"></div>
+        <div class="gantt-cell" style="grid-column: span 1;"><div class="gantt-bar bar-prep" style="left:2px;right:2px;font-size:0.65rem;">TBD</div></div>
+        <div class="gantt-cell" style="grid-column: span 7;"></div>
+
+        <!-- Row 11: Рассмотрение заявки (до 15 р.д.) -->
+        <div class="gantt-row-label">Рассмотрение (до 15 р.д.)</div>
+        <div class="gantt-cell" style="grid-column: span 13;"></div>
+        <div class="gantt-cell" style="grid-column: span 1;"><div class="gantt-bar bar-wait" style="left:0;right:0;">апр</div></div>
+        <div class="gantt-cell" style="grid-column: span 6;"></div>
+
+        <!-- Row 12: Статус Astana Hub -->
+        <div class="gantt-row-label" style="color:#059669;font-weight:600;">Статус Astana Hub</div>
+        <div class="gantt-cell" style="grid-column: span 14;"></div>
+        <div class="gantt-cell" style="grid-column: span 1;"><div class="gantt-bar bar-hub" style="left:4px;right:4px;font-size:0.9rem;">&#9670;</div></div>
         <div class="gantt-cell" style="grid-column: span 5;"></div>
 
-        <!-- Row 13: Приезд нового владельца -->
-        <div class="gantt-row-label">Приезд нового владельца</div>
-        <div class="gantt-cell" style="grid-column: span 27;"></div>
-        <div class="gantt-cell" style="grid-column: span 3;"><div class="gantt-bar bar-transfer" style="left:0;right:0;">ИИН+РВП+нотариус</div></div>
-        <div class="gantt-cell" style="grid-column: span 2;"></div>
-
-        <!-- Row 14: Перерегистрация ТОО -->
-        <div class="gantt-row-label" style="color:#dc2626;font-weight:600;">Перерегистрация ТОО</div>
-        <div class="gantt-cell" style="grid-column: span 29;"></div>
-        <div class="gantt-cell" style="grid-column: span 2;"><div class="gantt-bar bar-transfer" style="left:0;right:0;">5-7 дн</div></div>
+        <!-- Row 13: Операционная деятельность -->
+        <div class="gantt-row-label">Операционная деятельность</div>
+        <div class="gantt-cell" style="grid-column: span 14;"></div>
+        <div class="gantt-cell" style="grid-column: span 5;"><div class="gantt-bar bar-hub" style="left:0;right:0;opacity:0.5;">май — сент</div></div>
         <div class="gantt-cell" style="grid-column: span 1;"></div>
+
+        <!-- Row 14: Kaspi Рассрочка -->
+        <div class="gantt-row-label">Kaspi Рассрочка (20+ дней)</div>
+        <div class="gantt-cell" style="grid-column: span 13;"></div>
+        <div class="gantt-cell" style="grid-column: span 1;"><div class="gantt-bar bar-wait" style="left:0;right:0;">20д</div></div>
+        <div class="gantt-cell" style="grid-column: span 6;"></div>
+
+        <!-- Row 15: Подготовка трансфера -->
+        <div class="gantt-row-label">Подготовка трансфера доли</div>
+        <div class="gantt-cell" style="grid-column: span 18;"></div>
+        <div class="gantt-cell" style="grid-column: span 1;"><div class="gantt-bar bar-transfer" style="left:0;right:0;opacity:0.6;">док-ты</div></div>
+        <div class="gantt-cell" style="grid-column: span 1;"></div>
+
+        <!-- Row 16: Приезд нового владельца -->
+        <div class="gantt-row-label">Приезд нового владельца</div>
+        <div class="gantt-cell" style="grid-column: span 18;"></div>
+        <div class="gantt-cell" style="grid-column: span 2;"><div class="gantt-bar bar-transfer" style="left:0;right:0;">ИИН+РВП+нотариус</div></div>
+
+        <!-- Row 17: Перерегистрация ТОО -->
+        <div class="gantt-row-label" style="color:#dc2626;font-weight:600;">Перерегистрация ТОО</div>
+        <div class="gantt-cell" style="grid-column: span 19;"></div>
+        <div class="gantt-cell" style="grid-column: span 1;"><div class="gantt-bar bar-transfer" style="left:0;right:0;">окт</div></div>
       </div>
     </div>
 
@@ -358,17 +355,20 @@
   <div class="info-block">
     <h3>Ключевые этапы</h3>
     <table class="compare-table">
-      <tr><th>Этап</th><th>Срок</th><th>Что происходит</th></tr>
-      <tr><td><strong>1. Подготовка (РФ)</strong></td><td>2-3 недели</td><td>Справка о несудимости (Госуслуги, до 30 дн.), справка из реестра дисквалифицированных лиц (ФНС, 5 р.д.), бизнес-план, выбор юр. адреса</td></tr>
-      <tr><td><strong>2. ИИН</strong></td><td>1 рабочий день</td><td>ЦОН или МФЦА, паспорт + копия, бесплатно</td></tr>
-      <tr><td><strong>3. ЭЦП</strong></td><td>~1 час</td><td>ЦОН или МФЦА, только лично, нужен ИИН</td></tr>
-      <tr><td><strong>4. РВП</strong></td><td>подача: 1 час, решение: до 5 р.д.</td><td>Первое РВП на 90 дней со статусом бизнес-иммигранта</td></tr>
-      <tr><td><strong>5. Регистрация ТОО</strong></td><td>1 рабочий день</td><td>eGov Business (при наличии ЭЦП) или ЦОН</td></tr>
-      <tr><td><strong>6. Банковский счёт</strong></td><td>1 день</td><td>Kaspi / BCC / Freedom. Подключить Kaspi Pay.</td></tr>
-      <tr><td><strong>7. Подача заявки Astana Hub</strong></td><td>до 15 р.д.</td><td>Онлайн: бизнес-план + справка + документ на адрес. Можно подать перед отъездом</td></tr>
-      <tr style="background:#f0fdf4;"><td><strong>&#9992; Возврат в РФ</strong></td><td>после шага 7</td><td>Всё дальнейшее — удалённо через ЭЦП</td></tr>
-      <tr><td><strong>8. Статус Astana Hub</strong></td><td>~май 2026</td><td>Подписание договора <strong>удалённо через ЭЦП</strong>, получение сертификата</td></tr>
-      <tr><td><strong>9. Трансфер доли</strong></td><td>сент-окт 2026</td><td>Передача 100% доли + смена директора новому владельцу (гр. РФ)</td></tr>
+      <tr><th>Этап</th><th>Дата</th><th>Что происходит</th></tr>
+      <tr><td><strong>0. Подготовка (РФ)</strong></td><td>до 12 марта</td><td>Справка о несудимости (Госуслуги, до 30 дн.), бизнес-план, выбор юр. адреса, поиск квартиры на Krisha.kz</td></tr>
+      <tr style="background:#eff6ff;"><td><strong>&#9992; Вылет в Астану</strong></td><td>12 марта, 23:30</td><td>Рейс Москва → Астана</td></tr>
+      <tr><td><strong>1. Прилёт + отель</strong></td><td>13 марта (пт)</td><td>Заселение в отель, e-Qonaq автоматически, поиск квартиры</td></tr>
+      <tr><td><strong>2. ИИН + ЭЦП</strong></td><td>16 марта (пн)</td><td>ЦОН: ИИН + ЭЦП + дактилоскопия, лично, бесплатно</td></tr>
+      <tr><td><strong>3. Мед. справка + РВП</strong></td><td>16-18 марта</td><td>Справка 028/у + подача РВП бизнес-иммигранта (решение ~1-5 р.д.)</td></tr>
+      <tr><td><strong>4. Регистрация ТОО</strong></td><td>18-19 марта</td><td>eGov Business (при наличии ЭЦП) или ЦОН</td></tr>
+      <tr><td><strong>5. Банковский счёт</strong></td><td>19-20 марта</td><td>Kaspi / BCC / Freedom. Подключить Kaspi Pay</td></tr>
+      <tr><td><strong>6. Пакет Astana Hub</strong></td><td>20-23 марта</td><td>Бизнес-план + справка + документ на адрес</td></tr>
+      <tr><td><strong>7. Подача заявки</strong></td><td>23-24 марта</td><td>Заявка в Astana Hub онлайн</td></tr>
+      <tr style="background:#f0fdf4;"><td><strong>&#9992; Возврат в РФ</strong></td><td>~25 марта (TBD)</td><td>Всё дальнейшее — удалённо через ЭЦП</td></tr>
+      <tr><td><strong>8. Рассмотрение</strong></td><td>апрель 2026</td><td>До 15 рабочих дней, ожидание</td></tr>
+      <tr><td><strong>9. Статус Astana Hub</strong></td><td>~май 2026</td><td>Подписание договора <strong>удалённо через ЭЦП</strong>, получение сертификата</td></tr>
+      <tr><td><strong>10. Трансфер доли</strong></td><td>сент-окт 2026</td><td>Передача 100% доли + смена директора новому владельцу (гр. РФ)</td></tr>
     </table>
   </div>
 </div>
